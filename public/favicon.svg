@@ -1,0 +1,29 @@
+<svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E07A5F"/>
+      <stop offset="100%" style="stop-color:#F4A261"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#logoGradient)"/>
+  
+  <!-- Stylized design -->
+  <g transform="translate(256, 256)">
+    <!-- Central diamond/block -->
+    <rect x="-60" y="-60" width="120" height="120" rx="24" fill="white" transform="rotate(45)"/>
+    
+    <!-- Claw marks / neural connections -->
+    <path d="M-80 -80 L-40 -40" stroke="white" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+    <path d="M80 -80 L40 -40" stroke="white" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+    <path d="M-80 80 L-40 40" stroke="white" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+    <path d="M80 80 L40 40" stroke="white" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+    
+    <!-- Sparkle points -->
+    <circle cx="0" cy="-100" r="16" fill="white"/>
+    <circle cx="0" cy="100" r="16" fill="white"/>
+    <circle cx="-100" cy="0" r="16" fill="white"/>
+    <circle cx="100" cy="0" r="16" fill="white"/>
+  </g>
+</svg>

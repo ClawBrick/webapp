@@ -1,0 +1,435 @@
+@import "tailwindcss";
+
+/* =====================================================
+   SOFT CLAY BENTO - DUAL THEME DESIGN SYSTEM
+   Supports both Light and Dark modes
+   ===================================================== */
+
+:root {
+    /* LIGHT THEME - Soft Clay Bento */
+
+    /* Primary Backgrounds - Warm, soft clay tones */
+    --clay-bg-primary: #e8e4e0;
+    --clay-bg-secondary: #ddd8d3;
+    --clay-bg-tertiary: #d1ccc6;
+
+    /* Container/Card Backgrounds - Soft white */
+    --clay-surface: #faf8f6;
+    --clay-surface-hover: #f5f3f0;
+    --clay-surface-pressed: #efedea;
+
+    /* Primary Accent - Sunset Orange */
+    --clay-accent-primary: #e07a5f;
+    --clay-accent-primary-hover: #d46a4f;
+    --clay-accent-primary-pressed: #c45a3f;
+
+    /* Secondary Accent - Indigo Glow */
+    --clay-accent-secondary: #4a5568;
+    --clay-accent-indigo: #5e60ce;
+    --clay-accent-indigo-soft: #8b8dee;
+
+    /* Text Colors */
+    --clay-text-primary: #2d3748;
+    --clay-text-secondary: #4a5568;
+    --clay-text-tertiary: #718096;
+    --clay-text-muted: #a0aec0;
+
+    /* Utility Colors */
+    --clay-success: #68d391;
+    --clay-success-bg: #f0fdf4;
+    --clay-success-text: #166534;
+    --clay-warning: #f6ad55;
+    --clay-warning-bg: #fffbeb;
+    --clay-warning-text: #92400e;
+    --clay-error: #fc8181;
+    --clay-error-bg: #fef2f2;
+    --clay-error-text: #991b1b;
+
+    /* Shadow Colors - for light theme */
+    --shadow-color-dark: rgba(139, 131, 124, 0.25);
+    --shadow-color-light: rgba(255, 255, 255, 0.8);
+    --shadow-color-inset-dark: rgba(139, 131, 124, 0.15);
+    --shadow-color-inset-light: rgba(255, 255, 255, 0.9);
+
+    /* SHADOWS - Soft, diffused ambient occlusion for clay effect */
+    /* Floating state - soft elevation */
+    --shadow-clay-floating:
+        8px 8px 20px var(--shadow-color-dark),
+        -8px -8px 20px var(--shadow-color-light),
+        inset 1px 1px 1px rgba(255, 255, 255, 0.6);
+
+    /* Pressed state - appears depressed */
+    --shadow-clay-pressed:
+        inset 4px 4px 8px var(--shadow-color-inset-dark),
+        inset -4px -4px 8px var(--shadow-color-inset-light);
+
+    /* Small element shadows */
+    --shadow-clay-small:
+        4px 4px 10px var(--shadow-color-dark),
+        -4px -4px 10px var(--shadow-color-light);
+
+    /* Inset for inputs */
+    --shadow-clay-inset:
+        inset 3px 3px 6px var(--shadow-color-inset-dark),
+        inset -3px -3px 6px var(--shadow-color-inset-light);
+
+    /* Hover elevation */
+    --shadow-clay-hover:
+        12px 12px 28px var(--shadow-color-dark),
+        -12px -12px 28px var(--shadow-color-light);
+
+    /* Legacy vars for compatibility - mapped to new system */
+    --background: var(--clay-bg-primary);
+    --foreground: var(--clay-text-primary);
+    --accent: var(--clay-accent-primary);
+    --accent-2: var(--clay-accent-indigo);
+}
+
+/* DARK THEME - Dark Clay Bento */
+[data-theme="dark"] {
+    /* Primary Backgrounds - Dark clay tones */
+    --clay-bg-primary: #1a1a1a;
+    --clay-bg-secondary: #222222;
+    --clay-bg-tertiary: #2a2a2a;
+
+    /* Container/Card Backgrounds - Dark surface */
+    --clay-surface: #252525;
+    --clay-surface-hover: #2a2a2a;
+    --clay-surface-pressed: #1f1f1f;
+
+    /* Primary Accent - Sunset Orange (slightly adjusted for dark) */
+    --clay-accent-primary: #e07a5f;
+    --clay-accent-primary-hover: #e88a6f;
+    --clay-accent-primary-pressed: #d46a4f;
+
+    /* Secondary Accent - Indigo Glow */
+    --clay-accent-secondary: #a0aec0;
+    --clay-accent-indigo: #818cf8;
+    --clay-accent-indigo-soft: #a5b4fc;
+
+    /* Text Colors - Light text on dark background */
+    --clay-text-primary: #f7fafc;
+    --clay-text-secondary: #e2e8f0;
+    --clay-text-tertiary: #a0aec0;
+    --clay-text-muted: #718096;
+
+    /* Utility Colors - adjusted for dark mode */
+    --clay-success: #68d391;
+    --clay-success-bg: #1c4532;
+    --clay-success-text: #9ae6b4;
+    --clay-warning: #f6ad55;
+    --clay-warning-bg: #4a3218;
+    --clay-warning-text: #fbd38d;
+    --clay-error: #fc8181;
+    --clay-error-bg: #4a2020;
+    --clay-error-text: #feb2b2;
+
+    /* Shadow Colors - for dark theme */
+    --shadow-color-dark: rgba(0, 0, 0, 0.5);
+    --shadow-color-light: rgba(255, 255, 255, 0.08);
+    --shadow-color-inset-dark: rgba(0, 0, 0, 0.6);
+    --shadow-color-inset-light: rgba(255, 255, 255, 0.05);
+}
+
+@theme inline {
+    --color-background: var(--clay-bg-primary);
+    --color-foreground: var(--clay-text-primary);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--clay-bg-primary);
+    color: var(--clay-text-primary);
+    font-family: var(--font-geist-sans);
+    overflow-x: hidden;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+/* ===== SCROLLBAR - Adaptive Clay Style ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--clay-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--clay-bg-tertiary);
+    border-radius: 4px;
+    box-shadow: var(--shadow-clay-small);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--clay-text-muted);
+}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+    background: linear-gradient(
+        135deg,
+        var(--clay-accent-primary) 0%,
+        #f4a261 50%,
+        var(--clay-accent-indigo) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-animated {
+    background: linear-gradient(
+        90deg,
+        var(--clay-accent-primary),
+        #f4a261,
+        var(--clay-accent-indigo),
+        var(--clay-accent-primary)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s linear infinite;
+}
+
+@keyframes gradient-shift {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* ===== CLAY BUTTONS ===== */
+.btn-clay {
+    background-color: var(--clay-surface);
+    box-shadow: var(--shadow-clay-small);
+    transition: all 0.2s ease;
+    border-radius: 16px;
+    color: var(--clay-text-primary);
+}
+
+.btn-clay:hover {
+    background-color: var(--clay-surface-hover);
+    box-shadow: var(--shadow-clay-hover);
+    transform: translateY(-2px);
+}
+
+.btn-clay:active {
+    box-shadow: var(--shadow-clay-pressed);
+    transform: scale(0.98);
+}
+
+/* Primary accent button - Sunset Orange */
+.btn-clay-primary {
+    background: linear-gradient(135deg, var(--clay-accent-primary), #f4a261);
+    box-shadow:
+        6px 6px 16px rgba(224, 122, 95, 0.3),
+        -6px -6px 16px rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    color: white;
+    border-radius: 16px;
+}
+
+.btn-clay-primary:hover {
+    box-shadow:
+        8px 8px 20px rgba(224, 122, 95, 0.4),
+        -8px -8px 20px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-clay-primary:active {
+    box-shadow:
+        inset 4px 4px 8px rgba(180, 90, 70, 0.4),
+        inset -4px -4px 8px rgba(255, 140, 110, 0.3);
+    transform: scale(0.98);
+}
+
+/* ===== CLAY CARDS ===== */
+.card-clay {
+    background-color: var(--clay-surface);
+    box-shadow: var(--shadow-clay-floating);
+    border-radius: 24px;
+}
+
+.card-clay-hover:hover {
+    background-color: var(--clay-surface-hover);
+    box-shadow: var(--shadow-clay-hover);
+    transform: translateY(-4px);
+}
+
+.card-clay-pressed {
+    background-color: var(--clay-surface-pressed);
+    box-shadow: var(--shadow-clay-pressed);
+    border-radius: 24px;
+}
+
+/* ===== CLAY INPUTS ===== */
+.input-clay {
+    background-color: var(--clay-surface);
+    box-shadow: var(--shadow-clay-inset);
+    border: none;
+    color: var(--clay-text-primary);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.input-clay:focus {
+    box-shadow:
+        inset 4px 4px 8px var(--shadow-color-inset-dark),
+        inset -4px -4px 8px var(--shadow-color-inset-light),
+        0 0 0 3px rgba(224, 122, 95, 0.2);
+    outline: none;
+}
+
+.input-clay::placeholder {
+    color: var(--clay-text-muted);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background: rgba(224, 122, 95, 0.3);
+    color: var(--clay-text-primary);
+}
+
+/* ===== FOCUS ===== */
+*:focus-visible {
+    outline: 3px solid rgba(224, 122, 95, 0.4);
+    outline-offset: 2px;
+}
+
+/* ===== SOFT ANIMATIONS ===== */
+@keyframes soft-pulse {
+    0%,
+    100% {
+        opacity: 0.6;
+        box-shadow: 0 0 10px rgba(224, 122, 95, 0.3);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(224, 122, 95, 0.5);
+    }
+}
+
+.animate-soft-pulse {
+    animation: soft-pulse 3s ease-in-out infinite;
+}
+
+/* ===== STATUS INDICATORS ===== */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.status-dot-running {
+    background-color: var(--clay-success);
+    color: var(--clay-success);
+    animation: soft-pulse 2s ease-in-out infinite;
+}
+
+.status-dot-stopped {
+    background-color: var(--clay-text-muted);
+    color: var(--clay-text-muted);
+}
+
+/* ===== BENTO GRID STYLES ===== */
+.bento-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.bento-card {
+    background: var(--clay-surface);
+    border-radius: 28px;
+    box-shadow: var(--shadow-clay-floating);
+    transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+    box-shadow: var(--shadow-clay-hover);
+    transform: translateY(-4px);
+}
+
+/* ===== SOFT SHAPES ===== */
+.shape-rounded {
+    border-radius: 24px;
+}
+
+.shape-pill {
+    border-radius: 9999px;
+}
+
+.shape-blob {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* ===== TACTILE INTERACTIONS ===== */
+.tactile {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tactile:hover {
+    transform: translateY(-2px);
+}
+
+.tactile:active {
+    transform: scale(0.97);
+    box-shadow: var(--shadow-clay-pressed);
+}
+
+/* ===== CLAY TOGGLE ===== */
+.clay-toggle {
+    background: var(--clay-surface);
+    box-shadow: var(--shadow-clay-inset);
+    border-radius: 9999px;
+    padding: 4px;
+}
+
+.clay-toggle-thumb {
+    background: var(--clay-surface);
+    box-shadow: var(--shadow-clay-small);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.clay-toggle-thumb.active {
+    background: var(--clay-accent-primary);
+    transform: translateX(100%);
+}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-divider {
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--clay-bg-tertiary),
+        transparent
+    );
+    margin: 4rem 0;
+}
+
+/* ===== GLOW EFFECTS ===== */
+.glow-orange {
+    box-shadow: 0 0 30px rgba(224, 122, 95, 0.3);
+}
+
+.glow-indigo {
+    box-shadow: 0 0 30px rgba(94, 96, 206, 0.3);
+}
+
+/* ===== THEME TRANSITIONS ===== */
+.theme-transition {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
