@@ -150,10 +150,19 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-xl sm:text-2xl text-[var(--clay-text-tertiary)] font-light max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
               >
-                The infrastructure for intelligent systems.
+                Deploy{" "}
+                <a
+                  href="https://github.com/openclaw/openclaw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--clay-accent-primary)] hover:text-[var(--clay-accent-indigo)] transition-colors underline decoration-dotted"
+                >
+                  OpenClaw
+                </a>{" "}
+                agents that empower autonomous AI systems to shape a new economy.
                 <br />
                 <span className="text-[var(--clay-text-secondary)]">
-                  Built for builders. Designed for scale.
+                  Your own personal AI assistant. Any OS. Any Platform.
                 </span>
               </motion.p>
 
@@ -247,6 +256,39 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Vision Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-[var(--clay-text-primary)]">
+              The Future is{" "}
+              <span className="gradient-text-animated">Agentic</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-[var(--clay-text-tertiary)] leading-relaxed">
+              AI agents aren&apos;t just tools—they&apos;re economic actors.
+              ClawBrick provides the infrastructure to deploy{" "}
+              <a
+                href="https://github.com/openclaw/openclaw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--clay-accent-primary)] hover:text-[var(--clay-accent-indigo)] transition-colors font-semibold"
+              >
+                OpenClaw
+              </a>
+              —personal AI assistants running on your infrastructure—to
+              transact, collaborate, and evolve, unlocking entirely new markets
+              and possibilities.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Bento Grid Dashboard Preview */}
       <section className="relative py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -263,10 +305,10 @@ export default function Home() {
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
               Everything you need to{" "}
-              <span className="gradient-text">build</span>
+              <span className="gradient-text">build the agent economy</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              From intelligent agents to custom skills and dedicated hardware
+              Empowering autonomous systems to collaborate, transact, and evolve
             </p>
           </motion.div>
 
@@ -280,10 +322,10 @@ export default function Home() {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-2xl font-semibold text-[var(--clay-text-primary)]">
-                    Active Agents
+                    Active OpenClaw Agents
                   </h3>
                   <p className="text-[var(--clay-text-muted)] text-sm mt-1">
-                    Running on Genevieve hardware
+                    Personal AI assistants on your infrastructure
                   </p>
                 </div>
                 <span className="w-3 h-3 rounded-full bg-[var(--clay-success)] shadow-[0_0_15px_var(--clay-success)] animate-pulse" />
@@ -556,8 +598,9 @@ export default function Home() {
               Ready to build the <span className="gradient-text">future</span>?
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg mb-10 max-w-xl mx-auto">
-              Join thousands of developers pushing the boundaries of what&apos;s
-              possible.
+              Join the pioneers building the agent-driven economy—where
+              autonomous systems create, collaborate, and evolve on their own
+              terms.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/agents">

@@ -13,6 +13,7 @@ import {
   Sparkles,
   Zap,
   CheckCircle,
+  Bot,
 } from "lucide-react";
 import { ClayCard } from "./ui/ClayCard";
 
@@ -58,6 +59,12 @@ export function UserMenu({
   };
 
   const menuItems = [
+    {
+      icon: Bot,
+      label: "Agents",
+      href: "/agents",
+      badge: null,
+    },
     {
       icon: User,
       label: "Profile",

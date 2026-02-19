@@ -71,7 +71,8 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
       const message = `Welcome to ClawBrick!\n\nSign this message to authenticate your wallet and access the platform.\n\nTimestamp: ${Date.now()}\nAddress: ${address}`;
       const messageBytes = new TextEncoder().encode(message);
-      const signature = await walletProvider.signMessage(messageBytes);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const signature = await (walletProvider as any).signMessage(messageBytes);
 
       localStorage.setItem("wallet_authenticated", "true");
       localStorage.setItem(
@@ -89,12 +90,8 @@ export function AuthGuard({ children }: AuthGuardProps) {
   };
 
   const disconnectWallet = async () => {
-    try {
-      const { disconnect } = await import("@reown/appkit/react");
-      await disconnect();
-    } catch {
-      // Fallback
-    }
+    // Note: AppKit disconnect is handled at the Navbar level
+    // This function just clears our local auth state
 
     localStorage.removeItem("wallet_connected");
     localStorage.removeItem("wallet_address");

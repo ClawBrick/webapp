@@ -1,4 +1,33 @@
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto";
+
+/**
+ * Decrypt an encrypted token
+ */
+export function decryptToken(encryptedToken: string): string {
+    const key = process.env.ENCRYPTION_KEY;
+    if (!key) throw new Error("ENCRYPTION_KEY not set");
+
+    const [ivHex, encrypted] = encryptedToken.split(":");
+    const decipher = crypto.createDecipheriv("aes-256-cbc", Buffer.from(key, "hex"), Buffer.from(ivHex, "hex"));
+    let decrypted = decipher.update(encrypted, "hex", "utf8");
+    decrypted += decipher.final("utf8");
+    return decrypted;
+}
+
+/**
+ * Encrypt a token for storage
+ */
+export function encryptToken(token: string): string {
+    const key = process.env.ENCRYPTION_KEY;
+    if (!key) throw new Error("ENCRYPTION_KEY not set");
+
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv("aes-256-cbc", Buffer.from(key, "hex"), iv);
+    let encrypted = cipher.update(token, "utf8", "hex");
+    encrypted += cipher.final("hex");
+    return iv.toString("hex") + ":" + encrypted;
+}
 
 // Server-side Supabase client with service role key for API routes
 export function createServerSupabaseClient() {
@@ -37,8 +66,12 @@ export interface Agent {
     description: string | null;
     configuration: Record<string, unknown>;
     status: "pending" | "provisioning" | "ready" | "running" | "stopped" | "error" | "destroyed";
+    // Instance info (matches Terraform outputs)
     vultr_instance_id: string | null;
+    instance_id: string | null;  // Alias for vultr_instance_id
     main_ip: string | null;
+    instance_ip: string | null;  // Alias for main_ip
+    gateway_url: string | null;
     subdomain: string | null;
     deploy_region: string;
     llm_provider: "anthropic" | "openai" | "openrouter" | "ollama" | null;
@@ -49,6 +82,7 @@ export interface Agent {
     provisioning_completed_at: string | null;
     provisioning_logs: Array<{ timestamp: string; message: string; level: string }>;
     last_error: string | null;
+    provisioning_error: string | null;  // Alias for last_error
     skills: string[];
     created_at: string;
     updated_at: string;

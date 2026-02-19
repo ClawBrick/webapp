@@ -8,13 +8,19 @@ import { Sparkles, Menu, X, Wallet, ShieldAlert } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { UserMenu } from "./UserMenu";
 import { SignMessageModal } from "./SignMessageModal";
-import { useAppKitAccount, useAppKit, useDisconnect, useAppKitProvider } from "@reown/appkit/react";
+import {
+  useAppKitAccount,
+  useAppKit,
+  useDisconnect,
+  useAppKitProvider,
+} from "@reown/appkit/react";
 import type { Provider } from "@reown/appkit-adapter-solana";
 import { getBalance } from "@/lib/solana";
 
 export default function Navbar() {
   // Use the official AppKit hooks for reactive state updates
-  const { address: appKitAddress, isConnected: appKitConnected } = useAppKitAccount();
+  const { address: appKitAddress, isConnected: appKitConnected } =
+    useAppKitAccount();
   const { open } = useAppKit();
   const { disconnect } = useDisconnect();
   const { walletProvider } = useAppKitProvider<Provider>("solana");
@@ -57,12 +63,14 @@ export default function Navbar() {
 
     if (isConnected && address) {
       // Check authentication status from localStorage
-      const authStatus = localStorage.getItem("wallet_authenticated") === "true";
+      const authStatus =
+        localStorage.getItem("wallet_authenticated") === "true";
       const savedAddress = localStorage.getItem("wallet_address");
 
       if (authStatus && savedAddress === address) {
         setIsAuthenticated(true);
-        const savedBalance = localStorage.getItem("wallet_balance") || "0.00 SOL";
+        const savedBalance =
+          localStorage.getItem("wallet_balance") || "0.00 SOL";
         setBalance(savedBalance);
       } else {
         localStorage.setItem("wallet_address", address);
@@ -76,7 +84,12 @@ export default function Navbar() {
 
   // Auto-open sign modal when wallet connects but isn't authenticated
   useEffect(() => {
-    if (isConnected && address && !isAuthenticated && !hasAutoPromptedSign.current) {
+    if (
+      isConnected &&
+      address &&
+      !isAuthenticated &&
+      !hasAutoPromptedSign.current
+    ) {
       hasAutoPromptedSign.current = true;
       setShowSignModal(true);
     }
@@ -156,10 +169,9 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/agents", label: "Agents" },
-    { href: "/skills", label: "Skills" },
+    { href: "/manifesto", label: "Manifesto" },
     { href: "/genevieve", label: "Genevieve" },
+    { href: "/pricing", label: "Pricing" },
   ];
 
   // Loading state
@@ -192,15 +204,17 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-500 ${isScrolled ? "py-3" : "py-4"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-500 ${
+          isScrolled ? "py-3" : "py-4"
+        }`}
       >
         <div className="max-w-7xl mx-auto">
           <div
-            className={`relative rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-500 ${isScrolled
-              ? "bg-[var(--clay-surface)] shadow-[var(--shadow-clay-floating)]"
-              : "bg-transparent"
-              }`}
+            className={`relative rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-500 ${
+              isScrolled
+                ? "bg-[var(--clay-surface)] shadow-[var(--shadow-clay-floating)]"
+                : "bg-transparent"
+            }`}
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
@@ -222,10 +236,11 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl ${pathname === link.href
-                    ? "text-[var(--clay-text-primary)]"
-                    : "text-[var(--clay-text-tertiary)] hover:text-[var(--clay-text-primary)]"
-                    }`}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl ${
+                    pathname === link.href
+                      ? "text-[var(--clay-text-primary)]"
+                      : "text-[var(--clay-text-tertiary)] hover:text-[var(--clay-text-primary)]"
+                  }`}
                 >
                   {pathname === link.href && (
                     <motion.div
@@ -346,10 +361,11 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${pathname === link.href
-                    ? "bg-[var(--clay-surface)] text-[var(--clay-text-primary)] shadow-[var(--shadow-clay-pressed)]"
-                    : "text-[var(--clay-text-muted)] hover:text-[var(--clay-text-primary)] hover:bg-[var(--clay-surface-hover)]"
-                    }`}
+                  className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    pathname === link.href
+                      ? "bg-[var(--clay-surface)] text-[var(--clay-text-primary)] shadow-[var(--shadow-clay-pressed)]"
+                      : "text-[var(--clay-text-muted)] hover:text-[var(--clay-text-primary)] hover:bg-[var(--clay-surface-hover)]"
+                  }`}
                 >
                   {link.label}
                 </Link>
