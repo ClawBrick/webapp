@@ -57,54 +57,39 @@ jobs:
             NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
   deploy:
-  name: Deploy to Development
-  needs: build
-  runs-on: ubuntu-latest
-  environment: prod
+    name: Deploy to Development
+    needs: build
+    runs-on: ubuntu-latest
+    environment: prod
 
-  steps:
-    - name: Deploy via SSH
-      uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ vars.REMOTE_SERVER_ADDRESS }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.REMOTE_SERVER_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        script: |
-          cd clawbrick/webapp/
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.REMOTE_SERVER_ADDRESS }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.REMOTE_SERVER_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd clawbrick/webapp/
 
-          echo "🔑 Logging into GHCR..."
-          echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
-          echo "🛑 Stopping old container..."
-          docker stop clawbrick-dev || true
-          docker rm clawbrick-dev || true
+            docker stop clawbrick-dev || true
+            docker rm clawbrick-dev || true
 
-          echo "🧹 Cleaning unused images..."
-          docker system prune -f
+            docker system prune -f
 
-          echo "📦 Pulling latest image..."
-          docker pull ghcr.io/clawbrick/webapp:main
+            docker pull ghcr.io/clawbrick/webapp:main
 
-          echo "📄 Creating .env file..."
-          # cat <<EOF > .env
-          # NEXT_PUBLIC_REOWN_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
-          # NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          # NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          # EOF
-
-          echo "🚀 Starting container with Traefik..."
-          docker run -d \
-            --name clawbrick-dev \
-            --env-file .env \
-            --restart unless-stopped \
-            --network traefik \
-            -p 9083:3000 \
-            --label "traefik.enable=true" \
-            --label "traefik.http.routers.clawbrick-dev.rule=Host(\`clawbrick.com\`)" \
-            --label "traefik.http.routers.clawbrick-dev.entrypoints=websecure" \
-            --label "traefik.http.routers.clawbrick-dev.tls.certresolver=letsencrypt" \
-            --label "traefik.http.services.clawbrick-dev.loadbalancer.server.port=3000" \
-            ghcr.io/clawbrick/webapp:main
-
-          echo "✅ Deployment completed!"
+            docker run -d \
+              --name clawbrick-dev \
+              --restart unless-stopped \
+              --network traefik \
+              -p 9083:3000 \
+              --label "traefik.enable=true" \
+              --label "traefik.http.routers.clawbrick-dev.rule=Host(\`clawbrick.com\`)" \
+              --label "traefik.http.routers.clawbrick-dev.entrypoints=websecure" \
+              --label "traefik.http.routers.clawbrick-dev.tls.certresolver=letsencrypt" \
+              --label "traefik.http.services.clawbrick-dev.loadbalancer.server.port=3000" \
+              ghcr.io/clawbrick/webapp:main
