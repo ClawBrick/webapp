@@ -58,7 +58,7 @@ jobs:
 
   deploy:
     name: Deploy to Development
-    needs: build-and-push
+    needs: build
     runs-on: ubuntu-latest
     environment: prod
 
@@ -71,44 +71,26 @@ jobs:
           key: ${{ secrets.REMOTE_SERVER_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            echo "📂 Navigating to clawbrick directory..."
             cd clawbrick
 
-            echo "🔑 Logging in to GitHub Container Registry (GHCR)..."
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
-            echo "🛑 Stopping and removing existing container (if running)..."
             docker stop clawbrick-dev || true
             docker rm clawbrick-dev || true
 
-            echo "🧹 Removing old images to free up space..."
             docker system prune -f
 
-            echo "🚀 Pulling the latest image for uat..."
             docker pull ghcr.io/ClawBrick/webapp:main
 
-            echo "📄 Creating environment file..."
             cat <<EOF > .env
             NEXT_PUBLIC_REOWN_PROJECT_ID=${{ secrets.NEXT_PUBLIC_REOWN_PROJECT_ID }}
             NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
             NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-
             EOF
 
-            echo "🐳 Running the new container..."
             docker run -d -p 9083:3000 \
               --name clawbrick-dev \
               --env-file .env \
               --restart unless-stopped \
-              --label "traefik.enable=true" \
-              --label 'traefik.http.routers.clawbrick-dev.rule=Host("clawbrick.com")' \
-              --label "traefik.http.routers.clawbrick-dev.entrypoints=websecure" \
-              --label "traefik.http.routers.clawbrick-dev.tls.certresolver=letsencrypt" \
-              --label "traefik.http.services.clawbrick-dev.loadbalancer.server.port=3000" \
-              --label "traefik.http.routers.clawbrick-dev.middlewares=redirect-to-https" \
-              --label "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https" \
               --network traefik \
-              ghcr.io/netsepio/cyrene-web:uat
-
-            echo "✅ Deployment complete!"
-
+              ghcr.io/ClawBrick/webapp:main
