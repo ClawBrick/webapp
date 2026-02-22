@@ -84,8 +84,9 @@ jobs:
 
             docker run -d \
               --name clawbrick-dev \
+              --env-file .env \
               --restart unless-stopped \
-              --network traefik \
+              --network traefik_web \
               -p 9083:3000 \
               --label "traefik.enable=true" \
               --label "traefik.http.routers.clawbrick-dev.rule=Host(\`clawbrick.com\`)" \
