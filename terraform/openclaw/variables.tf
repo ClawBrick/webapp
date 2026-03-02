@@ -1,6 +1,12 @@
 # Required variables
-variable "vultr_api_key" {
-  description = "Vultr API key"
+variable "upcloud_username" {
+  description = "UpCloud API username"
+  type        = string
+  sensitive   = true
+}
+
+variable "upcloud_password" {
+  description = "UpCloud API password"
   type        = string
   sensitive   = true
 }
@@ -69,15 +75,21 @@ variable "control_server_ip" {
   type        = string
 }
 
-# Optional variables with defaults
-variable "vultr_region" {
-  description = "Vultr region for deployment"
-  type        = string
-  default     = "bom"  # Mumbai, India
+variable "ssh_public_keys" {
+  description = "List of SSH public keys to authorise on the server"
+  type        = list(string)
+  default     = []
 }
 
-variable "vultr_plan" {
-  description = "Vultr plan ID"
+# Optional variables with defaults
+variable "upcloud_zone" {
+  description = "UpCloud zone for deployment"
   type        = string
-  default     = "vc2-1c-2gb"  # 1 vCPU, 2GB RAM
+  default     = "sg-sin1"  # Singapore
+}
+
+variable "upcloud_plan" {
+  description = "UpCloud server plan"
+  type        = string
+  default     = "1xCPU-2GB"  # 1 vCPU, 2GB RAM
 }

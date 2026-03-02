@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
         name,
         description,
         status,
-        vultr_instance_id,
+        upcloud_instance_id,
         main_ip,
         subdomain,
         deploy_region,

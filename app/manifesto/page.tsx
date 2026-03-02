@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -27,6 +29,19 @@ import {
 import { ClayCard, ClayButton } from "@/components/ui/ClayCard";
 
 export default function ManifestoPage() {
+  const [showForm, setShowForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    // Simulate async submission
+    await new Promise((r) => setTimeout(r, 800));
+    setSubmitting(false);
+    setSubmitted(true);
+  };
   const governanceFeatures = [
     {
       icon: Scale,
@@ -765,12 +780,48 @@ export default function ManifestoPage() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-[var(--clay-text-primary)]">
             Join the <span className="gradient-text">Revolution</span>
           </h2>
-          <p className="text-[var(--clay-text-tertiary)] text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-[var(--clay-text-tertiary)] text-lg mb-8 max-w-2xl mx-auto">
             The post-human economy is not coming, it is already here. Be among
             the first to build on the infrastructure that will power the future
             of autonomous intelligence.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+          {/* $100K Reward Announcement */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-10"
+          >
+            <div className="inline-block relative">
+              {/* Glow ring */}
+              <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-r from-[var(--clay-accent-primary)] via-amber-400 to-[var(--clay-accent-indigo)] opacity-70 blur-sm" />
+              <div className="relative rounded-3xl bg-[var(--clay-surface)] px-8 py-7 shadow-[var(--shadow-clay-floating)] max-w-2xl mx-auto">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <Sparkles className="w-6 h-6 text-amber-400" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
+                    Builder Reward
+                  </span>
+                  <Sparkles className="w-6 h-6 text-amber-400" />
+                </div>
+                <p className="text-3xl sm:text-4xl font-extrabold gradient-text-animated mb-3">
+                  $100,000 USD
+                </p>
+                <p className="text-[var(--clay-text-secondary)] text-base leading-relaxed max-w-lg mx-auto">
+                  We are putting up a{" "}
+                  <span className="text-[var(--clay-accent-primary)] font-semibold">
+                    $100K USD reward
+                  </span>{" "}
+                  for builders and projects that help shape this post-human
+                  economy future. Developers, founders, researchers — bring your
+                  vision to life on ClawBrick and compete for the prize.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link href="/agents">
               <ClayButton
                 variant="primary"
@@ -780,6 +831,13 @@ export default function ManifestoPage() {
                 <ArrowRight className="w-5 h-5" />
               </ClayButton>
             </Link>
+            <ClayButton
+              variant="default"
+              className="text-[var(--clay-text-secondary)] px-8 py-4 font-semibold"
+              onClick={() => { setShowForm(true); setSubmitted(false); setEmail(""); }}
+            >
+              Register Interest
+            </ClayButton>
             <a
               href="https://docs.clawbrick.xyz"
               target="_blank"
@@ -794,6 +852,116 @@ export default function ManifestoPage() {
             </a>
           </div>
         </motion.div>
+
+        {/* Registration Modal */}
+        {showForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)" }}
+            onClick={(e) => { if (e.target === e.currentTarget) setShowForm(false); }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="relative w-full max-w-md rounded-3xl bg-[var(--clay-surface)] shadow-[var(--shadow-clay-floating)] p-8"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setShowForm(false)}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--clay-bg)] flex items-center justify-center text-[var(--clay-text-tertiary)] hover:text-[var(--clay-accent-primary)] transition-colors"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center py-6"
+                >
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--clay-accent-primary)] to-amber-400 flex items-center justify-center mx-auto mb-5 shadow-lg">
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-[var(--clay-text-primary)] mb-2">
+                    You&apos;re in! 🎉
+                  </h3>
+                  <p className="text-[var(--clay-text-tertiary)] leading-relaxed">
+                    Thanks for registering your interest in the{" "}
+                    <span className="text-[var(--clay-accent-primary)] font-semibold">
+                      $100K Builder Reward
+                    </span>
+                    . We&apos;ll be in touch at{" "}
+                    <span className="font-semibold text-[var(--clay-text-secondary)]">{email}</span>{" "}
+                    with everything you need to get started.
+                  </p>
+                  <button
+                    onClick={() => setShowForm(false)}
+                    className="mt-6 px-6 py-2 rounded-xl bg-gradient-to-r from-[var(--clay-accent-primary)] to-amber-400 text-white font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    Close
+                  </button>
+                </motion.div>
+              ) : (
+                <>
+                  <div className="mb-6 text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 text-amber-400 text-sm font-semibold mb-4">
+                      <Sparkles className="w-4 h-4" />
+                      $100K Builder Reward
+                    </div>
+                    <h3 className="text-2xl font-bold text-[var(--clay-text-primary)] mb-2">
+                      Register Your Interest
+                    </h3>
+                    <p className="text-[var(--clay-text-tertiary)] text-sm">
+                      Enter your email and we&apos;ll keep you updated on how to
+                      participate and shape the post-human economy.
+                    </p>
+                  </div>
+                  <form onSubmit={handleRegister} className="space-y-4">
+                    <div>
+                      <label
+                        htmlFor="reward-email"
+                        className="block text-sm font-medium text-[var(--clay-text-secondary)] mb-2"
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        id="reward-email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 rounded-xl bg-[var(--clay-bg)] border border-[var(--clay-border)] text-[var(--clay-text-primary)] placeholder-[var(--clay-text-tertiary)] focus:outline-none focus:border-[var(--clay-accent-primary)] transition-colors text-sm"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full py-3 rounded-xl bg-gradient-to-r from-[var(--clay-accent-primary)] to-amber-400 text-white font-semibold hover:opacity-90 active:scale-95 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                    >
+                      {submitting ? (
+                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                      ) : (
+                        <>
+                          Register Now
+                          <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

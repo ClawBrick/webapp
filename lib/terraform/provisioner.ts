@@ -1,6 +1,6 @@
 /**
  * Terraform provisioner for OpenClaw VM deployment
- * Executes Terraform commands to provision Vultr instances
+ * Executes Terraform commands to provision UpCloud instances
  */
 
 import { exec } from "child_process";
@@ -11,7 +11,8 @@ import fs from "fs/promises";
 const execAsync = promisify(exec);
 
 export interface TerraformVars {
-    vultr_api_key: string;
+    upcloud_username: string;
+    upcloud_password: string;
     user_id: string;
     agent_id: string;
     llm_provider: string;
@@ -23,8 +24,8 @@ export interface TerraformVars {
     domain: string;
     admin_email: string;
     control_server_ip: string;
-    vultr_region?: string;
-    vultr_plan?: string;
+    upcloud_zone?: string;
+    upcloud_plan?: string;
 }
 
 export interface TerraformOutputs {
@@ -74,7 +75,8 @@ export class TerraformProvisioner {
         const varsContent = `# Auto-generated terraform.tfvars for OpenClaw
 # Agent ID: ${vars.agent_id}
 
-vultr_api_key       = "${vars.vultr_api_key}"
+upcloud_username    = "${vars.upcloud_username}"
+upcloud_password    = "${vars.upcloud_password}"
 user_id             = "${vars.user_id}"
 agent_id            = "${vars.agent_id}"
 llm_provider        = "${vars.llm_provider}"
@@ -86,8 +88,8 @@ subdomain           = "${vars.subdomain}"
 domain              = "${vars.domain}"
 admin_email         = "${vars.admin_email}"
 control_server_ip   = "${vars.control_server_ip}"
-vultr_region        = "${vars.vultr_region || "bom"}"
-vultr_plan          = "${vars.vultr_plan || "vc2-1c-2gb"}"
+upcloud_zone        = "${vars.upcloud_zone || "sg-sin1"}"
+upcloud_plan        = "${vars.upcloud_plan || "1xCPU-2GB"}"
 `;
 
         await fs.writeFile(path.join(workspaceDir, "terraform.tfvars"), varsContent, { mode: 0o600 });
@@ -241,7 +243,7 @@ vultr_plan          = "${vars.vultr_plan || "vc2-1c-2gb"}"
             }
 
             // Apply Terraform
-            logs.push(`[${new Date().toISOString()}] Provisioning Vultr instance...`);
+            logs.push(`[${new Date().toISOString()}] Provisioning UpCloud instance...`);
             const applyResult = await this.apply(workspaceDir);
             logs.push(applyResult.output);
 

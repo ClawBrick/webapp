@@ -24,7 +24,7 @@ import {
     ClaySelect,
 } from "@/components/ui/ClayCard";
 import { AuthGuard } from "@/components/AuthGuard";
-import { LLM_PROVIDERS, VULTR_REGIONS } from "@/lib/supabase";
+import { LLM_PROVIDERS, UPCLOUD_ZONES } from "@/lib/supabase";
 
 interface DeployResult {
     success: boolean;
@@ -54,7 +54,7 @@ export default function DeployAgentPage() {
     const [llmModel, setLlmModel] = useState<string>("claude-3-5-sonnet-20241022");
     const [telegramBotToken, setTelegramBotToken] = useState("");
     const [apiKey, setApiKey] = useState("");
-    const [deployRegion, setDeployRegion] = useState("bom");
+    const [deployRegion, setDeployRegion] = useState("sg-sin1");
 
     useEffect(() => {
         setMounted(true);
@@ -366,7 +366,7 @@ export default function DeployAgentPage() {
                                             value={deployRegion}
                                             onChange={(e) => setDeployRegion(e.target.value)}
                                         >
-                                            {VULTR_REGIONS.map((region) => (
+                                            {UPCLOUD_ZONES.map((region) => (
                                                 <option key={region.value} value={region.value}>
                                                     {region.label}
                                                 </option>

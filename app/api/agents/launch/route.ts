@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
             llmModel,
             telegramBotToken,
             apiKey,
-            deployRegion = "bom",
+            deployRegion = "sg-sin1",
         } = body;
 
         // Validation
@@ -46,13 +46,14 @@ export async function POST(request: NextRequest) {
         }
 
         // Check required environment variables
-        const vultrApiKey = process.env.VULTR_API_KEY;
+        const upcloudUsername = process.env.UPCLOUD_USERNAME;
+        const upcloudPassword = process.env.UPCLOUD_PASSWORD;
         const controlServerIp = process.env.CONTROL_SERVER_IP;
         const domain = process.env.CLAWBRICK_DOMAIN || "clawbrick.com";
         const adminEmail = process.env.ADMIN_EMAIL || "support@clawbrick.com";
 
-        if (!vultrApiKey) {
-            return NextResponse.json({ error: "VULTR_API_KEY not configured" }, { status: 500 });
+        if (!upcloudUsername || !upcloudPassword) {
+            return NextResponse.json({ error: "UPCLOUD_USERNAME / UPCLOUD_PASSWORD not configured" }, { status: 500 });
         }
         if (!controlServerIp) {
             return NextResponse.json({ error: "CONTROL_SERVER_IP not configured" }, { status: 500 });
@@ -99,7 +100,8 @@ export async function POST(request: NextRequest) {
         // We don't await this - it runs asynchronously
         const agentRecord = agent as Agent;
         provisionAgentAsync(agentRecord.id, {
-            vultr_api_key: vultrApiKey,
+            upcloud_username: upcloudUsername,
+            upcloud_password: upcloudPassword,
             user_id: userId,
             agent_id: agentRecord.id,
             llm_provider: llmProvider,
@@ -111,7 +113,7 @@ export async function POST(request: NextRequest) {
             domain,
             admin_email: adminEmail,
             control_server_ip: controlServerIp,
-            vultr_region: deployRegion,
+            upcloud_zone: deployRegion,
         });
 
         return NextResponse.json({
@@ -142,7 +144,8 @@ export async function POST(request: NextRequest) {
  * This runs in the background and updates the agent record with progress
  */
 async function provisionAgentAsync(agentId: string, vars: {
-    vultr_api_key: string;
+    upcloud_username: string;
+    upcloud_password: string;
     user_id: string;
     agent_id: string;
     llm_provider: string;
@@ -154,7 +157,7 @@ async function provisionAgentAsync(agentId: string, vars: {
     domain: string;
     admin_email: string;
     control_server_ip: string;
-    vultr_region?: string;
+    upcloud_zone?: string;
 }) {
     const supabase = createServerSupabaseClient();
 

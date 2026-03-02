@@ -14,6 +14,7 @@ import {
   Key,
   Activity,
   Sparkles,
+  AtSign,
 } from "lucide-react";
 import Link from "next/link";
 import { ClayCard, ClayButton } from "@/components/ui/ClayCard";
@@ -23,13 +24,16 @@ import {
   getRecentTransactions,
   getSolscanUrl,
   formatAddress,
+  getSNSDomain,
 } from "@/lib/solana";
 
 export default function ProfilePage() {
   const [mounted, setMounted] = useState(false);
   const [address, setAddress] = useState<string | null>(null);
+  const [snsName, setSnsName] = useState<string | null>(null);
   const [balance, setBalance] = useState<string>("-- SOL");
   const [isLoadingBalance, setIsLoadingBalance] = useState(false);
+  const [isLoadingSns, setIsLoadingSns] = useState(false);
   const [balanceError, setBalanceError] = useState<string | null>(null);
   const [transactions, setTransactions] = useState<
     Array<{ signature: string; blockTime: number }>
@@ -40,12 +44,12 @@ export default function ProfilePage() {
     setMounted(true);
     const savedAddress = localStorage.getItem("wallet_address");
     const savedBalance = localStorage.getItem("wallet_balance");
+    const savedSns = localStorage.getItem("wallet_sns");
 
     if (savedAddress) {
       setAddress(savedAddress);
-      if (savedBalance) {
-        setBalance(savedBalance);
-      }
+      if (savedBalance) setBalance(savedBalance);
+      if (savedSns) setSnsName(savedSns);
     }
   }, []);
 
@@ -79,6 +83,18 @@ export default function ProfilePage() {
     if (address) {
       fetchBalance();
       fetchTransactions();
+      // Fresh SNS lookup (skip if already cached from navbar session)
+      const cached = localStorage.getItem("wallet_sns");
+      if (!cached) {
+        setIsLoadingSns(true);
+        getSNSDomain(address)
+          .then((name) => {
+            setSnsName(name);
+            if (name) localStorage.setItem("wallet_sns", name);
+          })
+          .catch(() => { })
+          .finally(() => setIsLoadingSns(false));
+      }
     }
   }, [address, fetchBalance, fetchTransactions]);
 
@@ -133,17 +149,49 @@ export default function ProfilePage() {
               className="lg:col-span-2"
             >
               <ClayCard className="p-6 sm:p-8">
-                {/* Avatar and Address */}
+                {/* Avatar and Identity */}
                 <div className="flex items-start gap-4 mb-8">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[var(--clay-accent-primary)] to-[#F4A261] flex items-center justify-center shadow-lg">
-                    <Sparkles className="w-10 h-10 text-white" />
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[var(--clay-accent-primary)] to-[#F4A261] flex items-center justify-center shadow-lg flex-shrink-0">
+                    {snsName ? (
+                      <AtSign className="w-10 h-10 text-white" />
+                    ) : (
+                      <Sparkles className="w-10 h-10 text-white" />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm text-[var(--clay-text-muted)] mb-1">
-                      Connected Wallet
+                    {/* SNS name — shown prominently when available */}
+                    {snsName ? (
+                      <div className="mb-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[var(--clay-accent-primary)]/20 to-[var(--clay-accent-indigo)]/20 border border-[var(--clay-accent-primary)]/30">
+                            <AtSign className="w-4 h-4 text-[var(--clay-accent-primary)]" />
+                            <span className="text-lg font-bold text-[var(--clay-accent-primary)]">
+                              {snsName}
+                            </span>
+                          </div>
+                          <a
+                            href={`https://sns.id/domain?domain=${snsName.replace(".sol", "")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-lg bg-[var(--clay-surface)] shadow-[var(--shadow-clay-pressed)] hover:text-[var(--clay-accent-primary)] transition-colors"
+                            title="View on SNS"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        </div>
+                      </div>
+                    ) : isLoadingSns ? (
+                      <div className="mb-2 text-sm text-[var(--clay-text-muted)] animate-pulse">
+                        Checking for .sol domain...
+                      </div>
+                    ) : null}
+
+                    {/* Wallet address */}
+                    <div className="text-xs text-[var(--clay-text-muted)] mb-1">
+                      {snsName ? "Linked wallet" : "Connected Wallet"}
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <code className="text-lg font-mono text-[var(--clay-text-primary)] break-all">
+                      <code className="text-sm font-mono text-[var(--clay-text-secondary)] break-all">
                         {address ? formatAddress(address, 8) : "Not connected"}
                       </code>
                       {address && (

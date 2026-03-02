@@ -67,8 +67,8 @@ export interface Agent {
     configuration: Record<string, unknown>;
     status: "pending" | "provisioning" | "ready" | "running" | "stopped" | "error" | "destroyed";
     // Instance info (matches Terraform outputs)
-    vultr_instance_id: string | null;
-    instance_id: string | null;  // Alias for vultr_instance_id
+    upcloud_instance_id: string | null;
+    instance_id: string | null;  // Alias for upcloud_instance_id
     main_ip: string | null;
     instance_ip: string | null;  // Alias for main_ip
     gateway_url: string | null;
@@ -96,14 +96,15 @@ export const LLM_PROVIDERS = [
     { value: "ollama", label: "Ollama (Local)", models: ["llama3", "mistral", "codellama"] },
 ] as const;
 
-// Vultr regions
-export const VULTR_REGIONS = [
-    { value: "bom", label: "Mumbai, India" },
-    { value: "del", label: "Delhi, India" },
-    { value: "sgp", label: "Singapore" },
-    { value: "nrt", label: "Tokyo, Japan" },
-    { value: "ewr", label: "New Jersey, US" },
-    { value: "lax", label: "Los Angeles, US" },
-    { value: "fra", label: "Frankfurt, Germany" },
-    { value: "lhr", label: "London, UK" },
+// UpCloud zones
+export const UPCLOUD_ZONES = [
+    { value: "sg-sin1", label: "Singapore" },
+    { value: "fi-hel1", label: "Helsinki, Finland" },
+    { value: "de-fra1", label: "Frankfurt, Germany" },
+    { value: "uk-lon1", label: "London, UK" },
+    { value: "nl-ams1", label: "Amsterdam, Netherlands" },
+    { value: "us-nyc1", label: "New York, US" },
+    { value: "us-chi1", label: "Chicago, US" },
+    { value: "us-sjo1", label: "San Jose, US" },
+    { value: "au-syd1", label: "Sydney, Australia" },
 ] as const;

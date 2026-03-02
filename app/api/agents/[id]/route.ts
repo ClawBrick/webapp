@@ -61,10 +61,10 @@ export async function DELETE(
 
         const supabase = createServerSupabaseClient();
 
-        // Get agent to check Vultr instance
+        // Get agent to check UpCloud instance
         const { data: agent, error: fetchError } = await supabase
             .from("agents")
-            .select("vultr_instance_id, status")
+            .select("upcloud_instance_id, status")
             .eq("id", id)
             .single();
 
@@ -78,9 +78,9 @@ export async function DELETE(
 
         // TODO: Trigger Terraform destroy for the VM
         // For now, just update status
-        if (agent.vultr_instance_id) {
-            // In production: run terraform destroy or call Vultr API directly
-            console.log(`Would destroy Vultr instance: ${agent.vultr_instance_id}`);
+        if (agent.upcloud_instance_id) {
+            // In production: run terraform destroy or call UpCloud API directly
+            console.log(`Would destroy UpCloud instance: ${agent.upcloud_instance_id}`);
         }
 
         // Update agent status

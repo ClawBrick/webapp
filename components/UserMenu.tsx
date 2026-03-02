@@ -14,18 +14,21 @@ import {
   Zap,
   CheckCircle,
   Bot,
+  AtSign,
 } from "lucide-react";
 import { ClayCard } from "./ui/ClayCard";
 
 interface UserMenuProps {
   address: string;
   balance?: string;
+  snsName?: string | null;
   onDisconnect: () => void;
 }
 
 export function UserMenu({
   address,
   balance = "0.00 SOL",
+  snsName,
   onDisconnect,
 }: UserMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,6 +61,9 @@ export function UserMenu({
     return `${addr.slice(0, 4)}...${addr.slice(-4)}`;
   };
 
+  // Display: SNS name if available, else truncated address
+  const displayIdentity = snsName || truncateAddress(address);
+
   const menuItems = [
     {
       icon: Bot,
@@ -81,7 +87,7 @@ export function UserMenu({
 
   return (
     <div className="relative" ref={menuRef}>
-      {/* Main Button - Cool compact design */}
+      {/* Main Button */}
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -101,15 +107,19 @@ export function UserMenu({
             transition={{ duration: 2, repeat: Infinity }}
             className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--clay-accent-primary)] to-[#F4A261] flex items-center justify-center"
           >
-            <Wallet className="w-4 h-4 text-white" />
+            {snsName ? (
+              <AtSign className="w-4 h-4 text-white" />
+            ) : (
+              <Wallet className="w-4 h-4 text-white" />
+            )}
           </motion.div>
           {/* Online indicator */}
           <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[var(--clay-success)] border-2 border-[var(--clay-surface)] rounded-full" />
         </div>
 
-        {/* Address - Hidden on very small screens */}
+        {/* Identity label */}
         <span className="hidden sm:block text-sm font-semibold text-[var(--clay-text-primary)]">
-          {truncateAddress(address)}
+          {displayIdentity}
         </span>
 
         {/* Dropdown arrow */}
@@ -121,7 +131,7 @@ export function UserMenu({
         </motion.div>
       </motion.button>
 
-      {/* Dropdown Menu - Cool animated panel */}
+      {/* Dropdown Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -132,18 +142,31 @@ export function UserMenu({
             className="absolute right-0 top-full mt-3 w-80 z-50"
           >
             <ClayCard className="p-0 overflow-hidden">
-              {/* Header with gradient */}
+              {/* Header */}
               <div className="relative p-5 bg-gradient-to-br from-[var(--clay-accent-primary)]/10 to-[var(--clay-accent-indigo)]/10">
                 <div className="flex items-center gap-3">
                   <div className="w-14 h-14 rounded-2xl bg-[var(--clay-surface)] shadow-[var(--shadow-clay-pressed)] flex items-center justify-center">
                     <Sparkles className="w-7 h-7 text-[var(--clay-accent-primary)]" />
                   </div>
                   <div className="flex-1 min-w-0">
+                    {/* SNS name badge (shown if available) */}
+                    {snsName && (
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-[var(--clay-accent-primary)]/20 to-[var(--clay-accent-indigo)]/20 border border-[var(--clay-accent-primary)]/30">
+                          <AtSign className="w-3 h-3 text-[var(--clay-accent-primary)]" />
+                          <span className="text-sm font-bold text-[var(--clay-accent-primary)]">
+                            {snsName}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Wallet address row */}
                     <div className="text-xs text-[var(--clay-text-muted)] mb-0.5">
-                      Connected Wallet
+                      {snsName ? "Linked wallet" : "Connected Wallet"}
                     </div>
                     <div className="flex items-center gap-2">
-                      <code className="text-sm font-mono text-[var(--clay-text-primary)] truncate">
+                      <code className="text-xs font-mono text-[var(--clay-text-secondary)] truncate">
                         {address}
                       </code>
                       <button
@@ -181,10 +204,15 @@ export function UserMenu({
                         <Zap className="w-4 h-4 text-[var(--clay-accent-primary)]" />
                       </div>
                       <span className="text-sm text-[var(--clay-text-secondary)]">
-                        Balance
+                        SOL Balance
                       </span>
                     </div>
-                    <span className="text-lg font-bold text-[var(--clay-text-primary)]">
+                    <span
+                      className={`text-lg font-bold ${balance === "Loading..."
+                          ? "text-[var(--clay-text-muted)] animate-pulse text-sm"
+                          : "text-[var(--clay-text-primary)]"
+                        }`}
+                    >
                       {balance}
                     </span>
                   </div>
@@ -195,21 +223,19 @@ export function UserMenu({
               <div className="flex border-b border-[var(--clay-bg-tertiary)]">
                 <button
                   onClick={() => setActiveTab("menu")}
-                  className={`flex-1 py-3 text-sm font-medium transition-colors ${
-                    activeTab === "menu"
+                  className={`flex-1 py-3 text-sm font-medium transition-colors ${activeTab === "menu"
                       ? "text-[var(--clay-accent-primary)] border-b-2 border-[var(--clay-accent-primary)]"
                       : "text-[var(--clay-text-muted)] hover:text-[var(--clay-text-secondary)]"
-                  }`}
+                    }`}
                 >
                   Menu
                 </button>
                 <button
                   onClick={() => setActiveTab("wallet")}
-                  className={`flex-1 py-3 text-sm font-medium transition-colors ${
-                    activeTab === "wallet"
+                  className={`flex-1 py-3 text-sm font-medium transition-colors ${activeTab === "wallet"
                       ? "text-[var(--clay-accent-primary)] border-b-2 border-[var(--clay-accent-primary)]"
                       : "text-[var(--clay-text-muted)] hover:text-[var(--clay-text-secondary)]"
-                  }`}
+                    }`}
                 >
                   Wallet
                 </button>
@@ -247,10 +273,26 @@ export function UserMenu({
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span className="text-sm font-medium">
-                        View on Explorer
+                        View on Solscan
                       </span>
                     </a>
-                    <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[var(--clay-text-secondary)] hover:text-[var(--clay-text-primary)] hover:bg-[var(--clay-surface-hover)] transition-colors text-left">
+                    {snsName && (
+                      <a
+                        href={`https://sns.id/domain?domain=${snsName.replace(".sol", "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[var(--clay-text-secondary)] hover:text-[var(--clay-accent-primary)] hover:bg-[var(--clay-surface-hover)] transition-colors"
+                      >
+                        <AtSign className="w-4 h-4" />
+                        <span className="text-sm font-medium">
+                          View {snsName} on SNS
+                        </span>
+                      </a>
+                    )}
+                    <button
+                      onClick={copyAddress}
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[var(--clay-text-secondary)] hover:text-[var(--clay-text-primary)] hover:bg-[var(--clay-surface-hover)] transition-colors text-left"
+                    >
                       <Copy className="w-4 h-4" />
                       <span className="text-sm font-medium">Copy Address</span>
                     </button>
