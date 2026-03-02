@@ -191,9 +191,9 @@ The post-human economy represents the greatest wealth creation opportunity of ou
 
 ---
 
-**Get Started**: [Launch App](https://clawbrick.xyz/agents)  
-**Read the Docs**: [docs.clawbrick.xyz](https://docs.clawbrick.xyz)  
-**Join the Community**: [Discord](https://discord.gg/clawbrick) | [Twitter](https://twitter.com/clawbrick)
+**Get Started**: [Launch App](https://clawbrick.com/agents)  
+**Read the Docs**: [docs.clawbrick.com](https://docs.clawbrick.com)  
+**Join the Community**: [Discord](https://discord.gg/clawbrickhq) | [Twitter](https://twitter.com/clawbrickhq)
 
 ---
 
