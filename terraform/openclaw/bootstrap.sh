@@ -4,20 +4,43 @@ set -euo pipefail
 # OpenClaw Bootstrap Script for ClawBrick
 # This script is run via cloud-init on first boot
 
+# Load configuration from a local env file if present.
+# This allows running the script manually (e.g. on UpCloud)
+# with values kept in the project folder instead of hardcoding.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_FILE="$SCRIPT_DIR/openclaw.env"
+
+if [ -f "$CONFIG_FILE" ]; then
+  # shellcheck source=/dev/null
+  . "$CONFIG_FILE"
+fi
+
 exec > >(tee /var/log/openclaw-bootstrap.log) 2>&1
 echo "=== OpenClaw Bootstrap Started at $(date) ==="
 
-# Variables (injected by Terraform)
-USER_ID="${user_id}"
-AGENT_ID="${agent_id}"
-LLM_PROVIDER="${llm_provider}"
-LLM_MODEL="${llm_model}"
-TELEGRAM_BOT_TOKEN="${telegram_bot_token}"
-API_KEY="${api_key}"
-GATEWAY_TOKEN="${gateway_token}"
-SUBDOMAIN="${subdomain}"
-DOMAIN="${domain}"
-ADMIN_EMAIL="${admin_email}"
+# Variables (injected by Terraform, environment, or openclaw.env)
+USER_ID="${USER_ID:-${user_id:-}}"
+AGENT_ID="${AGENT_ID:-${agent_id:-}}"
+LLM_PROVIDER="${LLM_PROVIDER:-${llm_provider:-}}"
+LLM_MODEL="${LLM_MODEL:-${llm_model:-}}"
+TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN:-${telegram_bot_token:-}}"
+API_KEY="${API_KEY:-${api_key:-}}"
+GATEWAY_TOKEN="${GATEWAY_TOKEN:-${gateway_token:-}}"
+SUBDOMAIN="${SUBDOMAIN:-${subdomain:-}}"
+DOMAIN="${DOMAIN:-${domain:-}}"
+ADMIN_EMAIL="${ADMIN_EMAIL:-${admin_email:-}}"
+
+# Basic validation to fail fast if required values are missing
+: "${USER_ID:?USER_ID (or user_id) must be set}"
+: "${AGENT_ID:?AGENT_ID (or agent_id) must be set}"
+: "${LLM_PROVIDER:?LLM_PROVIDER (or llm_provider) must be set}"
+: "${LLM_MODEL:?LLM_MODEL (or llm_model) must be set}"
+: "${TELEGRAM_BOT_TOKEN:?TELEGRAM_BOT_TOKEN (or telegram_bot_token) must be set}"
+: "${API_KEY:?API_KEY (or api_key) must be set}"
+: "${GATEWAY_TOKEN:?GATEWAY_TOKEN (or gateway_token) must be set}"
+: "${SUBDOMAIN:?SUBDOMAIN (or subdomain) must be set}"
+: "${DOMAIN:?DOMAIN (or domain) must be set}"
+: "${ADMIN_EMAIL:?ADMIN_EMAIL (or admin_email) must be set}"
 
 # System update
 echo ">>> Updating system..."

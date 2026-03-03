@@ -44,3 +44,6 @@ next-env.d.ts
 
 # Supabase
 .supabase
+
+# OpenClaw deployment config (keep secrets local)
+terraform/openclaw/openclaw.env
