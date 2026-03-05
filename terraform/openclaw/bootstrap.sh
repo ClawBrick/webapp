@@ -62,9 +62,17 @@ npm install -g pnpm
 echo ">>> Creating openclaw user..."
 useradd -m -s /bin/bash -u 1000 openclaw || true
 
-# Install OpenClaw globally
+# Install OpenClaw globally (idempotent)
 echo ">>> Installing OpenClaw..."
-npm install -g openclaw@latest
+if command -v openclaw >/dev/null 2>&1; then
+  echo "OpenClaw already installed, skipping npm install."
+else
+  if [ -d /usr/lib/node_modules/openclaw ]; then
+    echo "Existing /usr/lib/node_modules/openclaw found, removing before reinstall..."
+    rm -rf /usr/lib/node_modules/openclaw
+  fi
+  npm install -g openclaw@latest
+fi
 
 # Create OpenClaw directories
 echo ">>> Setting up OpenClaw directories..."
