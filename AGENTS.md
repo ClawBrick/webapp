@@ -6,7 +6,7 @@ Developer reference for the ClawBrick webapp. Read this before making changes.
 
 ## What Is This
 
-**ClawBrick** is a Solana-native platform for deploying autonomous AI agents (called **OpenClaw** instances) onto cloud VMs. Users connect a Solana wallet, authenticate via message signing, then provision an AI agent running on UpCloud infrastructure via Terraform. Agents are controlled through a Telegram bot.
+**ClawBrick** is a platform for deploying autonomous AI agents (called **OpenClaw** instances) onto cloud VMs. Users connect a Solana wallet, authenticate via message signing, then provision an AI agent running on UpCloud infrastructure via Terraform. Agents are controlled through a Telegram bot.
 
 - **Frontend**: Next.js 16 (App Router), Vanilla CSS with CSS variables (clay design system), Framer Motion
 - **Auth**: Solana wallet connect via [Reown AppKit](https://docs.reown.com/appkit) — no traditional auth
