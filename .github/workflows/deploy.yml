@@ -2,9 +2,9 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [main]
+    branches: [bug-fix]
   pull_request:
-    branches: [main]
+    branches: [bug-fix]
 
 env:
   REGISTRY: ghcr.io
@@ -36,11 +36,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ghcr.io/clawbrick/webapp
           tags: |
-            type=ref,event=branch
-            type=sha,prefix=
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=main
 
       - name: Build and push
         uses: docker/build-push-action@v5

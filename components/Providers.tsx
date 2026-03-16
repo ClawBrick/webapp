@@ -11,29 +11,41 @@ let appKitInitialized = false;
 if (typeof window !== "undefined" && !appKitInitialized) {
   const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID || "";
 
-  const metadata = {
-    name: "ClawBrick",
-    description: "The Future of Intelligence",
-    url: process.env.NEXT_PUBLIC_APP_URL || "https://clawbrick.xyz",
-    icons: ["https://clawbrick.xyz/icon.png"],
-  };
+  if (!projectId) {
+    // Helpful runtime log so we can see the value inside Docker / prod
+    // without crashing the whole app due to a missing Reown project ID.
+    // Wallet connect will be disabled until this is set correctly.
+    // eslint-disable-next-line no-console
+    console.error(
+      "[ClawBrick] NEXT_PUBLIC_REOWN_PROJECT_ID is missing. " +
+        "Set it in your build environment (GitHub Actions secrets / Docker build-args) " +
+        "so Reown AppKit can initialise.",
+    );
+  } else {
+    const metadata = {
+      name: "ClawBrick",
+      description: "The Future of Intelligence",
+      url: process.env.NEXT_PUBLIC_APP_URL || "https://clawbrick.xyz",
+      icons: ["https://clawbrick.xyz/icon.png"],
+    };
 
-  const solanaAdapter = new SolanaAdapter({
-    wallets: [],
-  });
+    const solanaAdapter = new SolanaAdapter({
+      wallets: [],
+    });
 
-  createAppKit({
-    adapters: [solanaAdapter],
-    networks: [solana],
-    projectId,
-    defaultNetwork: solana,
-    features: {
-      email: false,
-      socials: [],
-    },
-    themeMode: "dark",
-    metadata,
-  });
+    createAppKit({
+      adapters: [solanaAdapter],
+      networks: [solana],
+      projectId,
+      defaultNetwork: solana,
+      features: {
+        email: false,
+        socials: [],
+      },
+      themeMode: "dark",
+      metadata,
+    });
+  }
 
   appKitInitialized = true;
 }
