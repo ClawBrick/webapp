@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Menu, X, Wallet, ShieldAlert } from "lucide-react";
+import { Menu, X, Wallet, ShieldAlert } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { UserMenu } from "./UserMenu";
 import { SignMessageModal } from "./SignMessageModal";
@@ -192,8 +193,8 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto">
           <div className="bg-[var(--clay-surface)] rounded-2xl px-6 py-4 flex items-center justify-between shadow-[var(--shadow-clay-floating)]">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--clay-accent-primary)] to-[#F4A261] flex items-center justify-center shadow-lg">
-                <Sparkles className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
+                <Image src="/logo.png" alt="ClawBrick" width={40} height={40} className="w-full h-full object-cover" priority />
               </div>
               <span className="font-bold text-xl tracking-tight text-[var(--clay-text-primary)]">
                 ClawBrick
@@ -228,11 +229,11 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <motion.div
-                whileHover={{ scale: 1.05, rotate: 5 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--clay-accent-primary)] to-[#F4A261] flex items-center justify-center shadow-lg"
+                className="w-10 h-10 rounded-xl overflow-hidden shadow-lg"
               >
-                <Sparkles className="w-5 h-5 text-white" />
+                <Image src="/logo.png" alt="ClawBrick" width={40} height={40} className="w-full h-full object-cover" priority />
               </motion.div>
               <span className="font-bold text-xl tracking-tight hidden sm:block text-[var(--clay-text-primary)]">
                 ClawBrick
