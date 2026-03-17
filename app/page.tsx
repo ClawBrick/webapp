@@ -12,11 +12,19 @@ import {
   ChevronRight,
   Play,
   Activity,
-  Package,
   Terminal,
   Box,
   Wifi,
   Lock,
+  Building2,
+  Stethoscope,
+  GraduationCap,
+  Scale,
+  UtensilsCrossed,
+  Sprout,
+  Factory,
+  Briefcase,
+  Code,
 } from "lucide-react";
 import { GenevieveShowcase } from "@/components/GenevieveShowcase";
 import { ClayCard, ClayButton } from "@/components/ui/ClayCard";
@@ -50,26 +58,66 @@ export default function Home() {
 
   const features = [
     {
-      icon: Zap,
-      title: "Lightning Fast",
-      description: "Sub-millisecond inference with our optimized edge network",
+      icon: Building2,
+      title: "Industry Native",
+      description:
+        "Built for legal, healthcare, education, hospitality, agriculture, and manufacturing",
       gradient: "from-[var(--clay-accent-primary)] to-[#F4A261]",
     },
     {
       icon: Shield,
-      title: "Zero Trust",
+      title: "Enterprise Secure",
       description:
-        "Your data never leaves your infrastructure. Complete sovereignty",
+        "HIPAA, GDPR, and SOC compliant. Your data never leaves your control",
       gradient:
         "from-[var(--clay-accent-indigo)] to-[var(--clay-accent-indigo-soft)]",
     },
     {
       icon: Cpu,
-      title: "Infinite Scale",
+      title: "Deploy in Minutes",
       description:
-        "From prototype to planet-scale without changing a line of code",
+        "Pre-built templates for your industry. No AI expertise required",
       gradient:
         "from-[var(--clay-text-secondary)] to-[var(--clay-text-tertiary)]",
+    },
+  ];
+
+  const industries = [
+    {
+      icon: Scale,
+      name: "Legal",
+      description: "Contract review, discovery, legal research",
+      color: "from-amber-500/20 to-orange-500/20",
+    },
+    {
+      icon: Stethoscope,
+      name: "Healthcare",
+      description: "Patient coordination, intake, records",
+      color: "from-emerald-500/20 to-teal-500/20",
+    },
+    {
+      icon: GraduationCap,
+      name: "Education",
+      description: "Tutoring, grading, curriculum",
+      color: "from-blue-500/20 to-indigo-500/20",
+    },
+    {
+      icon: UtensilsCrossed,
+      name: "Hospitality",
+      description: "Inventory, reservations, service",
+      color: "from-rose-500/20 to-pink-500/20",
+    },
+    {
+      icon: Sprout,
+      name: "Agriculture",
+      description: "Monitoring, forecasting, supply chain",
+      color: "from-green-500/20 to-lime-500/20",
+    },
+    {
+      icon: Factory,
+      name: "Manufacturing",
+      description: "Quality control, maintenance, logistics",
+      color: "from-slate-500/20 to-gray-500/20",
     },
   ];
 
@@ -150,19 +198,15 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-xl sm:text-2xl text-[var(--clay-text-tertiary)] font-light max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
               >
-                Deploy{" "}
-                <a
-                  href="https://github.com/openclaw/openclaw"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--clay-accent-primary)] hover:text-[var(--clay-accent-indigo)] transition-colors underline decoration-dotted"
-                >
-                  OpenClaw
-                </a>{" "}
-                agents that empower autonomous AI systems to shape a new economy.
+                AI agents for the{" "}
+                <span className="text-[var(--clay-accent-primary)] font-semibold">
+                  other eighty percent
+                </span>
+                .
                 <br />
                 <span className="text-[var(--clay-text-secondary)]">
-                  Your own personal AI assistant. Any OS. Any Platform.
+                  While tech races ahead, most industries remain untouched.
+                  We&apos;re changing that.
                 </span>
               </motion.p>
 
@@ -194,7 +238,7 @@ export default function Home() {
                 </ClayButton>
               </motion.div>
 
-              {/* Stats */}
+              {/* Stats - Clean & Simple */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -202,9 +246,9 @@ export default function Home() {
                 className="mt-12 grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0"
               >
                 {[
-                  { value: "10K+", label: "Developers" },
-                  { value: "50M+", label: "Requests/Day" },
-                  { value: "99.99%", label: "Uptime" },
+                  { value: "6", label: "Industries" },
+                  { value: "70%", label: "Untapped" },
+                  { value: "5min", label: "To Deploy" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center lg:text-left">
                     <motion.div
@@ -256,6 +300,162 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* The Gap Section - Clean & Visual */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto mb-16"
+          >
+            <span className="text-sm font-semibold text-[var(--clay-accent-primary)] uppercase tracking-widest">
+              The AI Divide
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
+              Tech Has Its Agents.{" "}
+              <span className="gradient-text-animated">What About Everyone Else?</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-[var(--clay-text-tertiary)] leading-relaxed">
+              Developers and office workers have AI at their fingertips. Meanwhile,
+              lawyers still slog through documents. Doctors drown in paperwork.
+              Teachers grade by hand. We built ClawBrick for them.
+            </p>
+          </motion.div>
+
+          {/* Clean Visual Comparison */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Tech Side */}
+            <ClayCard className="p-8 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl" />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                  <Code className="w-6 h-6 text-emerald-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--clay-text-primary)]">
+                    Technology
+                  </h3>
+                  <p className="text-sm text-[var(--clay-text-muted)]">
+                    Saturated with AI tools
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="text-[var(--clay-text-secondary)]">Code assistants</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="text-[var(--clay-text-secondary)]">Automated testing</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="text-[var(--clay-text-secondary)]">Documentation writers</span>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-[var(--clay-border)]">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-emerald-600">Covered</span>
+                </div>
+              </div>
+            </ClayCard>
+
+            {/* Everyone Else Side */}
+            <ClayCard className="p-8 relative overflow-hidden border-l-4 border-l-[var(--clay-accent-primary)]">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--clay-accent-primary)]/10 rounded-full blur-3xl" />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-[var(--clay-accent-primary)]/20 flex items-center justify-center">
+                  <Briefcase className="w-6 h-6 text-[var(--clay-accent-primary)]" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--clay-text-primary)]">
+                    Everyone Else
+                  </h3>
+                  <p className="text-sm text-[var(--clay-text-muted)]">
+                    Waiting for their AI
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
+                  <span className="text-[var(--clay-text-secondary)]">Legal contract review</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
+                  <span className="text-[var(--clay-text-secondary)]">Medical intake & scheduling</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
+                  <span className="text-[var(--clay-text-secondary)]">Educational grading & tutoring</span>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-[var(--clay-border)]">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-[var(--clay-accent-primary)]">Untapped</span>
+                </div>
+              </div>
+            </ClayCard>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Section */}
+      <section className="relative py-24 overflow-hidden bg-[var(--clay-surface)]/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <span className="text-sm font-semibold text-[var(--clay-accent-indigo)] uppercase tracking-widest">
+              Industries We Serve
+            </span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
+              Built for <span className="gradient-text">Real Work</span>
+            </h2>
+            <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
+              Pre-configured agents that understand your workflows, compliance needs, and day-to-day challenges
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {industries.map((industry, i) => (
+              <motion.div
+                key={industry.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <ClayCard interactive className="h-full group">
+                  <div
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${industry.color} flex items-center justify-center mb-5 shadow-lg`}
+                  >
+                    <industry.icon className="w-7 h-7 text-[var(--clay-text-primary)]" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-[var(--clay-text-primary)] mb-2 group-hover:text-[var(--clay-accent-primary)] transition-colors">
+                    {industry.name}
+                  </h3>
+                  <p className="text-[var(--clay-text-tertiary)] text-sm">
+                    {industry.description}
+                  </p>
+                </ClayCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Vision Section */}
       <section className="relative py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -267,23 +467,13 @@ export default function Home() {
             className="text-center max-w-4xl mx-auto"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-[var(--clay-text-primary)]">
-              The Future is{" "}
-              <span className="gradient-text-animated">Agentic</span>
+              Democratizing the <span className="gradient-text-animated">AI Revolution</span>
             </h2>
             <p className="text-lg sm:text-xl text-[var(--clay-text-tertiary)] leading-relaxed">
-              AI agents aren&apos;t just tools—they&apos;re economic actors.
-              ClawBrick provides the infrastructure to deploy{" "}
-              <a
-                href="https://github.com/openclaw/openclaw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--clay-accent-primary)] hover:text-[var(--clay-accent-indigo)] transition-colors font-semibold"
-              >
-                OpenClaw
-              </a>
-              —personal AI assistants running on your infrastructure—to
-              transact, collaborate, and evolve, unlocking entirely new markets
-              and possibilities.
+              The greatest productivity gains of our lifetime should not be limited
+              to software engineers. Every lawyer, doctor, teacher, farmer, and
+              restaurant owner deserves the same advantage. ClawBrick is the bridge
+              between AI potential and the industries that power our world.
             </p>
           </motion.div>
         </div>
@@ -304,11 +494,11 @@ export default function Home() {
               Platform
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Everything you need to{" "}
-              <span className="gradient-text">build the agent economy</span>
+              Deploy Industry AI{" "}
+              <span className="gradient-text">In Minutes</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              Empowering autonomous systems to collaborate, transact, and evolve
+              No machine learning PhD required. Select your industry, customize your agent, deploy.
             </p>
           </motion.div>
 
@@ -322,16 +512,16 @@ export default function Home() {
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="text-2xl font-semibold text-[var(--clay-text-primary)]">
-                    Active OpenClaw Agents
+                    Your AI Workforce
                   </h3>
                   <p className="text-[var(--clay-text-muted)] text-sm mt-1">
-                    Personal AI assistants on your infrastructure
+                    One dashboard for every industry agent
                   </p>
                 </div>
                 <span className="w-3 h-3 rounded-full bg-[var(--clay-success)] shadow-[0_0_15px_var(--clay-success)] animate-pulse" />
               </div>
               <div className="flex gap-4 mt-auto">
-                {["Alpha Trader", "Content Gen", "Code Reviewer"].map(
+                {["Legal Review", "Patient Intake", "Menu Optimizer"].map(
                   (name, i) => (
                     <div
                       key={i}
@@ -362,7 +552,7 @@ export default function Home() {
               </p>
             </ClayCard>
 
-            {/* Card: Skills */}
+            {/* Card: Templates */}
             <ClayCard interactive>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-[var(--clay-surface)] shadow-[var(--shadow-clay-pressed)] flex items-center justify-center">
@@ -370,10 +560,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-[var(--clay-text-primary)]">
-                    Skills Marketplace
+                    Industry Templates
                   </h3>
                   <p className="text-[var(--clay-text-muted)] text-sm mt-1">
-                    Drag and drop capabilities
+                    Pre-built for your sector
                   </p>
                 </div>
               </div>
@@ -403,7 +593,7 @@ export default function Home() {
               </div>
               <div className="flex-1 bg-[var(--clay-surface)] rounded-2xl shadow-[var(--shadow-clay-pressed)] p-4 font-mono text-xs text-[var(--clay-text-muted)] overflow-hidden">
                 <span className="text-[var(--clay-accent-primary)]">$</span>{" "}
-                clawbrick deploy agent.yaml
+                clawbrick deploy legal-agent
               </div>
             </ClayCard>
 
@@ -418,7 +608,7 @@ export default function Home() {
                     Activity
                   </span>
                   <p className="text-xs text-[var(--clay-text-muted)]">
-                    67K+ requests today
+                    Cross-industry deployments
                   </p>
                 </div>
               </div>
@@ -451,7 +641,7 @@ export default function Home() {
               Capabilities
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Engineered for <span className="gradient-text">Excellence</span>
+              Enterprise Ready, <span className="gradient-text">Industry Focused</span>
             </h2>
           </motion.div>
 
@@ -495,7 +685,8 @@ export default function Home() {
               Genevieve <span className="gradient-text">Edge AI</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              Private, powerful AI that runs in your home. No cloud required.
+              When your data cannot leave the building. On-premise AI for healthcare,
+              legal, and regulated industries.
             </p>
           </motion.div>
 
@@ -543,23 +734,23 @@ export default function Home() {
               {[
                 {
                   icon: Lock,
-                  title: "Complete Privacy",
-                  desc: "Your data never leaves your device",
+                  title: "Air-Gapped Security",
+                  desc: "Data never leaves your premises. HIPAA, GDPR, attorney-client privilege protected",
                 },
                 {
                   icon: Zap,
-                  title: "Lightning Fast",
-                  desc: "Sub-50ms response times with dedicated AI chips",
+                  title: "Sub-50ms Response",
+                  desc: "Local inference faster than cloud round-trips",
                 },
                 {
                   icon: Wifi,
                   title: "Works Offline",
-                  desc: "No internet connection required",
+                  desc: "No internet required. Perfect for field work and secure facilities",
                 },
                 {
                   icon: Shield,
-                  title: "Enterprise Security",
-                  desc: "Hardware-level encryption",
+                  title: "Hardware Encryption",
+                  desc: "Military-grade security at the silicon level",
                 },
               ].map((item, i) => (
                 <ClayCard
@@ -595,12 +786,11 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-[var(--clay-text-primary)]">
-              Ready to build the <span className="gradient-text">future</span>?
+              Bring AI to <span className="gradient-text">Your Industry</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg mb-10 max-w-xl mx-auto">
-              Join the pioneers building the agent-driven economy—where
-              autonomous systems create, collaborate, and evolve on their own
-              terms.
+              Join thousands of businesses deploying AI agents tailored to their
+              unique workflows. From law firms to hospitals, schools to farms.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/agents">
@@ -631,4 +821,3 @@ export default function Home() {
     </div>
   );
 }
-
