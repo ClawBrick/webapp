@@ -59,24 +59,24 @@ export default function Home() {
   const features = [
     {
       icon: Building2,
-      title: "Industry Native",
+      title: "Works for Any Business",
       description:
-        "Built for legal, healthcare, education, hospitality, agriculture, and manufacturing",
+        "Whether you run a law office, clinic, restaurant, school, or factory — we have an agent built just for your world",
       gradient: "from-[var(--clay-accent-primary)] to-[#F4A261]",
     },
     {
       icon: Shield,
-      title: "Enterprise Secure",
+      title: "Safe & Private by Default",
       description:
-        "HIPAA, GDPR, and SOC compliant. Your data never leaves your control",
+        "Your business data stays yours. Every agent is built with the privacy and compliance rules of your industry baked in",
       gradient:
         "from-[var(--clay-accent-indigo)] to-[var(--clay-accent-indigo-soft)]",
     },
     {
       icon: Cpu,
-      title: "Deploy in Minutes",
+      title: "Up and Running Today",
       description:
-        "Pre-built templates for your industry. No AI expertise required",
+        "No technical team needed. Pick your business type, set it up in minutes, and your AI assistant starts working",
       gradient:
         "from-[var(--clay-text-secondary)] to-[var(--clay-text-tertiary)]",
     },
@@ -85,38 +85,38 @@ export default function Home() {
   const industries = [
     {
       icon: Scale,
-      name: "Legal",
-      description: "Contract review, discovery, legal research",
+      name: "Law Firms",
+      description: "Reads contracts, researches cases, and drafts documents overnight — so lawyers can focus on winning",
       color: "from-amber-500/20 to-orange-500/20",
     },
     {
       icon: Stethoscope,
-      name: "Healthcare",
-      description: "Patient coordination, intake, records",
+      name: "Clinics & Healthcare",
+      description: "Books appointments, handles patient intake, and chases follow-up — letting your staff focus on care",
       color: "from-emerald-500/20 to-teal-500/20",
     },
     {
       icon: GraduationCap,
-      name: "Education",
-      description: "Tutoring, grading, curriculum",
+      name: "Schools & Tutors",
+      description: "Personalizes lessons, grades papers, and answers student questions around the clock",
       color: "from-blue-500/20 to-indigo-500/20",
     },
     {
       icon: UtensilsCrossed,
-      name: "Hospitality",
-      description: "Inventory, reservations, service",
+      name: "Restaurants & Hotels",
+      description: "Manages reservations, handles orders, and replies to guests instantly — even at midnight",
       color: "from-rose-500/20 to-pink-500/20",
     },
     {
       icon: Sprout,
-      name: "Agriculture",
-      description: "Monitoring, forecasting, supply chain",
+      name: "Farms & Agriculture",
+      description: "Monitors crops, predicts yields, and manages supply chains — turning data into better harvests",
       color: "from-green-500/20 to-lime-500/20",
     },
     {
       icon: Factory,
-      name: "Manufacturing",
-      description: "Quality control, maintenance, logistics",
+      name: "Factories & Manufacturing",
+      description: "Catches quality issues, predicts breakdowns, and tracks inventory before anything goes wrong",
       color: "from-slate-500/20 to-gray-500/20",
     },
   ];
@@ -176,7 +176,7 @@ export default function Home() {
                   className="w-2 h-2 rounded-full bg-[var(--clay-success)] shadow-[0_0_10px_var(--clay-success)]"
                 />
                 <span className="text-[var(--clay-text-secondary)]">
-                  Now in private beta
+                  Agentic as a Service — Now Open
                 </span>
                 <ChevronRight className="w-4 h-4 text-[var(--clay-text-muted)]" />
               </motion.div>
@@ -198,15 +198,15 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-xl sm:text-2xl text-[var(--clay-text-tertiary)] font-light max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
               >
-                AI agents for the{" "}
+                Give your business its own{" "}
                 <span className="text-[var(--clay-accent-primary)] font-semibold">
-                  other eighty percent
+                  AI-powered team
                 </span>
                 .
                 <br />
                 <span className="text-[var(--clay-text-secondary)]">
-                  While tech races ahead, most industries remain untouched.
-                  We&apos;re changing that.
+                  ClawBrick turns any traditional or SaaS business into an
+                  Agentic business — one that works smarter, faster, and 24/7.
                 </span>
               </motion.p>
 
@@ -222,7 +222,7 @@ export default function Home() {
                     variant="primary"
                     className="flex items-center gap-2 text-white px-8 py-4"
                   >
-                    Launch App
+                    Deploy My First Agent
                     <ArrowRight className="w-5 h-5" />
                   </ClayButton>
                 </Link>
@@ -234,7 +234,7 @@ export default function Home() {
                   <div className="w-10 h-10 rounded-xl bg-[var(--clay-surface)] shadow-[var(--shadow-clay-pressed)] flex items-center justify-center">
                     <Play className="w-4 h-4 ml-0.5 text-[var(--clay-accent-primary)]" />
                   </div>
-                  Watch Demo
+                  See How It Works
                 </ClayButton>
               </motion.div>
 
@@ -246,9 +246,9 @@ export default function Home() {
                 className="mt-12 grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0"
               >
                 {[
-                  { value: "6", label: "Industries" },
-                  { value: "70%", label: "Untapped" },
-                  { value: "5min", label: "To Deploy" },
+                  { value: "6+", label: "Business Types" },
+                  { value: "24/7", label: "Always On" },
+                  { value: "5min", label: "To Go Live" },
                 ].map((stat, i) => (
                   <div key={i} className="text-center lg:text-left">
                     <motion.div
@@ -311,16 +311,16 @@ export default function Home() {
             className="text-center max-w-4xl mx-auto mb-16"
           >
             <span className="text-sm font-semibold text-[var(--clay-accent-primary)] uppercase tracking-widest">
-              The AI Divide
+              The Opportunity
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Tech Has Its Agents.{" "}
-              <span className="gradient-text-animated">What About Everyone Else?</span>
+              Big Tech Has AI.{" "}
+              <span className="gradient-text-animated">Now So Does Your Business.</span>
             </h2>
             <p className="text-lg sm:text-xl text-[var(--clay-text-tertiary)] leading-relaxed">
-              Developers and office workers have AI at their fingertips. Meanwhile,
-              lawyers still slog through documents. Doctors drown in paperwork.
-              Teachers grade by hand. We built ClawBrick for them.
+              Fortune 500 companies have been using AI for years — cutting costs, serving customers faster,
+              and never sleeping. ClawBrick gives the same power to your business,
+              without needing a tech team or a big budget.
             </p>
           </motion.div>
 
@@ -335,10 +335,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[var(--clay-text-primary)]">
-                    Technology
+                    Tech Giants & Startups
                   </h3>
                   <p className="text-sm text-[var(--clay-text-muted)]">
-                    Saturated with AI tools
+                    Already using AI everywhere
                   </p>
                 </div>
               </div>
@@ -346,21 +346,21 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-[var(--clay-text-secondary)]">Code assistants</span>
+                  <span className="text-[var(--clay-text-secondary)]">Software companies</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-[var(--clay-text-secondary)]">Automated testing</span>
+                  <span className="text-[var(--clay-text-secondary)]">Online businesses</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-[var(--clay-text-secondary)]">Documentation writers</span>
+                  <span className="text-[var(--clay-text-secondary)]">Digital agencies</span>
                 </div>
               </div>
 
               <div className="mt-6 pt-6 border-t border-[var(--clay-border)]">
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-emerald-600">Covered</span>
+                  <span className="text-2xl font-bold text-emerald-600">Well served</span>
                 </div>
               </div>
             </ClayCard>
@@ -374,10 +374,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-[var(--clay-text-primary)]">
-                    Everyone Else
+                    Traditional Businesses
                   </h3>
                   <p className="text-sm text-[var(--clay-text-muted)]">
-                    Waiting for their AI
+                    This is where ClawBrick comes in
                   </p>
                 </div>
               </div>
@@ -385,21 +385,21 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
-                  <span className="text-[var(--clay-text-secondary)]">Legal contract review</span>
+                  <span className="text-[var(--clay-text-secondary)]">Law firms & consultancies</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
-                  <span className="text-[var(--clay-text-secondary)]">Medical intake & scheduling</span>
+                  <span className="text-[var(--clay-text-secondary)]">Clinics, hospitals & pharmacies</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
-                  <span className="text-[var(--clay-text-secondary)]">Educational grading & tutoring</span>
+                  <span className="text-[var(--clay-text-secondary)]">Schools, restaurants & farms</span>
                 </div>
               </div>
 
               <div className="mt-6 pt-6 border-t border-[var(--clay-border)]">
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-[var(--clay-accent-primary)]">Untapped</span>
+                  <span className="text-2xl font-bold text-[var(--clay-accent-primary)]">Ready for you</span>
                 </div>
               </div>
             </ClayCard>
@@ -418,13 +418,13 @@ export default function Home() {
             className="text-center mb-16"
           >
             <span className="text-sm font-semibold text-[var(--clay-accent-indigo)] uppercase tracking-widest">
-              Industries We Serve
+              Built for Your World
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Built for <span className="gradient-text">Real Work</span>
+              Your Business Type, <span className="gradient-text">Your Agent</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              Pre-configured agents that understand your workflows, compliance needs, and day-to-day challenges
+              Every agent is pre-built for the way your industry actually works — no setup headaches, no learning curve
             </p>
           </motion.div>
 
@@ -467,13 +467,13 @@ export default function Home() {
             className="text-center max-w-4xl mx-auto"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-[var(--clay-text-primary)]">
-              Democratizing the <span className="gradient-text-animated">AI Revolution</span>
+              Your Business, <span className="gradient-text-animated">Upgraded</span>
             </h2>
             <p className="text-lg sm:text-xl text-[var(--clay-text-tertiary)] leading-relaxed">
-              The greatest productivity gains of our lifetime should not be limited
-              to software engineers. Every lawyer, doctor, teacher, farmer, and
-              restaurant owner deserves the same advantage. ClawBrick is the bridge
-              between AI potential and the industries that power our world.
+              You don&apos;t have to be a technology company to think and act like one.
+              ClawBrick gives every business — from a family-run clinic to a growing
+              restaurant chain — the same AI advantage that billion-dollar companies pay
+              millions to build. No jargon, no code, no guesswork. Just results.
             </p>
           </motion.div>
         </div>
@@ -491,14 +491,14 @@ export default function Home() {
             className="text-center mb-16"
           >
             <span className="text-sm font-semibold text-[var(--clay-accent-primary)] uppercase tracking-widest">
-              Platform
+              How It Works
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Deploy Industry AI{" "}
-              <span className="gradient-text">In Minutes</span>
+              Get Your AI Assistant{" "}
+              <span className="gradient-text">Running Today</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              No machine learning PhD required. Select your industry, customize your agent, deploy.
+              No tech skills needed. Pick your business type, answer a few questions, and your agent is live.
             </p>
           </motion.div>
 
@@ -521,7 +521,7 @@ export default function Home() {
                 <span className="w-3 h-3 rounded-full bg-[var(--clay-success)] shadow-[0_0_15px_var(--clay-success)] animate-pulse" />
               </div>
               <div className="flex gap-4 mt-auto">
-                {["Legal Review", "Patient Intake", "Menu Optimizer"].map(
+                {["Contract Helper", "Booking Assistant", "Customer Support"].map(
                   (name, i) => (
                     <div
                       key={i}
@@ -545,10 +545,10 @@ export default function Home() {
                 <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--clay-accent-indigo)] to-[var(--clay-accent-indigo-soft)] shadow-lg" />
               </div>
               <p className="text-sm font-semibold text-[var(--clay-text-primary)]">
-                Connect Wallet
+                Start Free
               </p>
               <p className="text-xs text-[var(--clay-text-muted)] mt-1">
-                Solana supported
+                No credit card needed
               </p>
             </ClayCard>
 
@@ -560,10 +560,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-[var(--clay-text-primary)]">
-                    Industry Templates
+                    Ready-Made Agents
                   </h3>
                   <p className="text-[var(--clay-text-muted)] text-sm mt-1">
-                    Pre-built for your sector
+                    Pick one and go live in minutes
                   </p>
                 </div>
               </div>
@@ -588,12 +588,12 @@ export default function Home() {
                   <Terminal className="w-5 h-5 text-[var(--clay-success)]" />
                 </div>
                 <span className="text-sm font-semibold text-[var(--clay-text-primary)]">
-                  API Access
+                  Telegram Control
                 </span>
               </div>
               <div className="flex-1 bg-[var(--clay-surface)] rounded-2xl shadow-[var(--shadow-clay-pressed)] p-4 font-mono text-xs text-[var(--clay-text-muted)] overflow-hidden">
-                <span className="text-[var(--clay-accent-primary)]">$</span>{" "}
-                clawbrick deploy legal-agent
+                <span className="text-[var(--clay-accent-primary)]">→</span>{" "}
+                Your agent is ready. Say hi!
               </div>
             </ClayCard>
 
@@ -605,10 +605,10 @@ export default function Home() {
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-[var(--clay-text-primary)]">
-                    Activity
+                    Work Done
                   </span>
                   <p className="text-xs text-[var(--clay-text-muted)]">
-                    Cross-industry deployments
+                    Tasks handled by your agents
                   </p>
                 </div>
               </div>
@@ -638,10 +638,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <span className="text-sm font-semibold text-[var(--clay-accent-indigo)] uppercase tracking-widest">
-              Capabilities
+              Why ClawBrick
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Enterprise Ready, <span className="gradient-text">Industry Focused</span>
+              Built for Business, <span className="gradient-text">Not for Tech Teams</span>
             </h2>
           </motion.div>
 
@@ -679,14 +679,14 @@ export default function Home() {
             className="text-center mb-16"
           >
             <span className="text-sm font-semibold text-[var(--clay-accent-primary)] uppercase tracking-widest">
-              Hardware
+              For Sensitive Businesses
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Genevieve <span className="gradient-text">Edge AI</span>
+              AI That Never <span className="gradient-text">Leaves Your Office</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              When your data cannot leave the building. On-premise AI for healthcare,
-              legal, and regulated industries.
+              For businesses where privacy is everything — like clinics, law firms, and any regulated industry.
+              Genevieve keeps all your data on-site, always.
             </p>
           </motion.div>
 
@@ -734,23 +734,23 @@ export default function Home() {
               {[
                 {
                   icon: Lock,
-                  title: "Air-Gapped Security",
-                  desc: "Data never leaves your premises. HIPAA, GDPR, attorney-client privilege protected",
+                  title: "Stays On Your Premises",
+                  desc: "Patient records, legal files, financial data — nothing ever leaves your building",
                 },
                 {
                   icon: Zap,
-                  title: "Sub-50ms Response",
-                  desc: "Local inference faster than cloud round-trips",
+                  title: "Instant Responses",
+                  desc: "Your agent replies in real-time, even faster than cloud-based tools",
                 },
                 {
                   icon: Wifi,
-                  title: "Works Offline",
-                  desc: "No internet required. Perfect for field work and secure facilities",
+                  title: "Works Without Internet",
+                  desc: "Keep running in remote areas, outages, or high-security environments",
                 },
                 {
                   icon: Shield,
-                  title: "Hardware Encryption",
-                  desc: "Military-grade security at the silicon level",
+                  title: "Bank-Level Security",
+                  desc: "Your data is encrypted and protected like a vault — always",
                 },
               ].map((item, i) => (
                 <ClayCard
@@ -786,11 +786,12 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-[var(--clay-text-primary)]">
-              Bring AI to <span className="gradient-text">Your Industry</span>
+              Ready to Make Your <span className="gradient-text">Business Smarter?</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg mb-10 max-w-xl mx-auto">
-              Join thousands of businesses deploying AI agents tailored to their
-              unique workflows. From law firms to hospitals, schools to farms.
+              Thousands of businesses are already using AI agents to save time,
+              cut costs, and serve customers better — around the clock.
+              Yours can be next.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/agents">
@@ -798,7 +799,7 @@ export default function Home() {
                   variant="primary"
                   className="flex items-center gap-2 text-white px-8 py-4"
                 >
-                  Get Started
+                  Deploy My First Agent
                   <ArrowRight className="w-5 h-5" />
                 </ClayButton>
               </Link>
@@ -811,7 +812,7 @@ export default function Home() {
                   variant="default"
                   className="text-[var(--clay-text-secondary)] px-8 py-4"
                 >
-                  Read Documentation
+                  Learn More
                 </ClayButton>
               </a>
             </div>

@@ -18,8 +18,8 @@ if (typeof window !== "undefined" && !appKitInitialized) {
     // eslint-disable-next-line no-console
     console.error(
       "[ClawBrick] NEXT_PUBLIC_REOWN_PROJECT_ID is missing. " +
-        "Set it in your build environment (GitHub Actions secrets / Docker build-args) " +
-        "so Reown AppKit can initialise.",
+      "Set it in your build environment (GitHub Actions secrets / Docker build-args) " +
+      "so Reown AppKit can initialise.",
     );
   } else {
     const metadata = {
@@ -39,8 +39,8 @@ if (typeof window !== "undefined" && !appKitInitialized) {
       projectId,
       defaultNetwork: solana,
       features: {
-        email: false,
-        socials: [],
+        email: true,
+        socials: ["google", "github", "apple", "facebook", "x", "discord", "farcaster"],
       },
       themeMode: "dark",
       metadata,

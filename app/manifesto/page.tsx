@@ -44,38 +44,38 @@ export default function ManifestoPage() {
   const industries = [
     {
       icon: Scale,
-      title: "Legal",
-      description: "Contract review, discovery, and research—freeing lawyers for strategy and advocacy.",
+      title: "Law Firms",
+      description: "Reads contracts, researches case law, and drafts standard documents overnight — so your lawyers spend time winning cases, not digging through paperwork.",
       gradient: "from-amber-500 to-orange-400",
     },
     {
       icon: Stethoscope,
-      title: "Healthcare",
-      description: "Intake, scheduling, and documentation—returning time to patient care.",
+      title: "Clinics & Healthcare",
+      description: "Books appointments, handles patient intake, and sends follow-up reminders automatically — giving your staff more time for the care that matters.",
       gradient: "from-emerald-500 to-teal-400",
     },
     {
       icon: GraduationCap,
-      title: "Education",
-      description: "Personalized learning, grading, and student support—amplifying teacher impact.",
+      title: "Schools & Educators",
+      description: "Personalizes learning for each student, grades assignments, and answers questions 24/7 — so teachers can focus on teaching, not admin.",
       gradient: "from-blue-500 to-indigo-400",
     },
     {
       icon: Sprout,
-      title: "Agriculture",
-      description: "Crop monitoring, yield prediction, and logistics—turning data into harvests.",
+      title: "Farms & Agriculture",
+      description: "Monitors crops, forecasts weather impact, and streamlines your supply chain — helping you grow more with less guesswork.",
       gradient: "from-green-500 to-lime-400",
     },
     {
       icon: Factory,
-      title: "Manufacturing",
-      description: "Maintenance prediction, quality control, and supply chain—preventing downtime.",
+      title: "Factories & Manufacturing",
+      description: "Predicts equipment failures before they happen, flags quality issues in real time, and keeps your supply chain running smoothly.",
       gradient: "from-slate-500 to-gray-400",
     },
     {
       icon: UtensilsCrossed,
-      title: "Hospitality",
-      description: "Inventory, reservations, and service—letting staff focus on guests.",
+      title: "Restaurants & Hospitality",
+      description: "Handles reservations, manages inventory, and responds to guest enquiries instantly — so your team can focus on the experience.",
       gradient: "from-rose-500 to-pink-400",
     },
   ];
@@ -83,23 +83,23 @@ export default function ManifestoPage() {
   const principles = [
     {
       icon: Globe,
-      title: "Accessibility First",
-      description: "AI should not be the exclusive domain of tech giants. Every business deserves access.",
+      title: "Built for Everyone",
+      description: "You shouldn't need a technical team or a big budget to benefit from AI. Every business deserves access.",
     },
     {
       icon: Shield,
-      title: "Compliance as Foundation",
-      description: "Industry-specific AI must meet industry-specific requirements from day one.",
+      title: "Privacy You Can Trust",
+      description: "Your data is safe by design. Every agent follows the privacy and compliance rules of your specific industry.",
     },
     {
       icon: Users,
-      title: "Human Augmentation",
-      description: "AI handles the repetitive while humans provide judgment. Multiplication, not replacement.",
+      title: "People First, Always",
+      description: "AI handles the routine so that your people can focus on the decisions that actually require human judgment.",
     },
     {
       icon: Zap,
-      title: "Practical Impact",
-      description: "We measure success by outcomes: hours saved, errors reduced, satisfaction improved.",
+      title: "Results, Not Hype",
+      description: "We measure success by what it means to you: time saved, money recovered, and customers better served.",
     },
   ];
 
@@ -132,20 +132,6 @@ export default function ManifestoPage() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
-        {/* Back Navigation */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-[var(--clay-text-tertiary)] hover:text-[var(--clay-accent-primary)] transition-colors mb-12"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Home</span>
-          </Link>
-        </motion.div>
 
         {/* Hero Section */}
         <motion.div
@@ -158,25 +144,26 @@ export default function ManifestoPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--clay-surface)] shadow-[var(--shadow-clay-small)] text-[var(--clay-accent-primary)] text-sm font-semibold mb-8">
             <Sparkles className="w-4 h-4" />
             <span className="text-[var(--clay-text-secondary)]">
-              The Manifesto
+              Our Story & Mission
             </span>
           </div>
 
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-8 text-[var(--clay-text-primary)]">
-            AI for the
+            Your Business,
             <br />
-            <span className="gradient-text-animated">Other Eighty Percent</span>
+            <span className="gradient-text-animated">Agentic from Today</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl sm:text-2xl text-[var(--clay-text-tertiary)] font-light max-w-3xl mx-auto leading-relaxed mb-6">
-            While developers have coding assistants and office workers have writing tools,
-            most industries remain frozen in the pre-AI era.
+            Every traditional business — a law firm, a clinic, a farm, a restaurant —
+            can now become an Agentic business: one that runs smarter, serves better,
+            and never stops working, even when you do.
           </p>
           <p className="text-lg text-[var(--clay-text-secondary)] max-w-2xl mx-auto">
-            Lawyers still review contracts by hand. Doctors drown in paperwork.
-            Teachers grade into the night. We built ClawBrick for them.
+            You don&apos;t need a tech department. You don&apos;t need to understand AI.
+            You just need ClawBrick.
           </p>
         </motion.div>
 
@@ -190,10 +177,10 @@ export default function ManifestoPage() {
         >
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-[var(--clay-accent-primary)] uppercase tracking-widest">
-              The Great Divide
+              The Opportunity
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              AI Has Arrived. <span className="gradient-text">But Not for Everyone.</span>
+              Big Tech Has AI. <span className="gradient-text">Your Business Can Too.</span>
             </h2>
           </div>
 
@@ -207,16 +194,16 @@ export default function ManifestoPage() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-[var(--clay-text-primary)]">
-                    Saturated
+                    Already Covered
                   </h3>
                   <p className="text-[var(--clay-text-muted)]">
-                    AI transformed these first
+                    Tech-first industries got here first
                   </p>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {["Technology & Software", "Administrative Work", "Financial Analysis", "Data Processing"].map((item) => (
+                {["Software & Tech Companies", "Online & E-commerce Businesses", "Financial Services", "Digital Marketing"].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-emerald-500" />
                     <span className="text-[var(--clay-text-secondary)]">{item}</span>
@@ -226,7 +213,7 @@ export default function ManifestoPage() {
 
               <div className="mt-8 pt-6 border-t border-[var(--clay-border)]">
                 <p className="text-emerald-600 font-semibold">
-                  High adoption • High productivity gains
+                  Well served • Many tools to choose from
                 </p>
               </div>
             </ClayCard>
@@ -240,16 +227,16 @@ export default function ManifestoPage() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-[var(--clay-text-primary)]">
-                    Untapped
+                    Your Chance
                   </h3>
                   <p className="text-[var(--clay-text-muted)]">
-                    Waiting for their AI
+                    Where ClawBrick changes everything
                   </p>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {["Legal & Professional Services", "Healthcare & Medicine", "Education & Training", "Agriculture & Farming", "Manufacturing & Industry", "Hospitality & Food Service"].map((item) => (
+                {["Law Firms & Professional Services", "Clinics, Hospitals & Pharmacies", "Schools, Tutors & Trainers", "Farms, Factories & Hospitality", "Physical Retail & Local Businesses", "Any Traditional or SaaS Business"].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-[var(--clay-accent-primary)]" />
                     <span className="text-[var(--clay-text-secondary)]">{item}</span>
@@ -259,7 +246,7 @@ export default function ManifestoPage() {
 
               <div className="mt-8 pt-6 border-t border-[var(--clay-border)]">
                 <p className="text-[var(--clay-accent-primary)] font-semibold">
-                  Low adoption • Massive opportunity
+                  Huge opportunity • ClawBrick is built for you
                 </p>
               </div>
             </ClayCard>
@@ -276,13 +263,14 @@ export default function ManifestoPage() {
         >
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-[var(--clay-accent-indigo)] uppercase tracking-widest">
-              Beyond Generic Chatbots
+              What Your Agent Can Do
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6 text-[var(--clay-text-primary)]">
-              Specialized Agents for <span className="gradient-text">Real Work</span>
+              An AI That <span className="gradient-text">Actually Knows Your Business</span>
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-3xl mx-auto">
-              The future of industry AI is not a smarter chatbot. It is agents that understand your work.
+              ClawBrick agents aren&apos;t generic chatbots. They are trained for the way your type of
+              business actually operates — your workflows, your compliance, your customers.
             </p>
           </div>
 
@@ -328,10 +316,10 @@ export default function ManifestoPage() {
             <div className="relative z-10">
               <div className="text-center mb-12">
                 <span className="text-sm font-semibold text-[var(--clay-accent-primary)] uppercase tracking-widest">
-                  Infrastructure
+                  How It Works
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-bold mt-4 text-[var(--clay-text-primary)]">
-                  Built for Real-World Deployment
+                  Up and Running in Minutes
                 </h2>
               </div>
 
@@ -339,40 +327,40 @@ export default function ManifestoPage() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-[var(--clay-text-primary)] mb-2">
-                      Compliance by Design
+                      Your Industry, Pre-Configured
                     </h3>
                     <p className="text-[var(--clay-text-tertiary)]">
-                      HIPAA for healthcare. Privilege protection for legal. FERPA for education.
-                      Compliance is not a feature—it is the foundation.
+                      Every agent comes ready for your business type. No setup hassle, no jargon,
+                      no learning curve. Just pick your industry and go.
                     </p>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[var(--clay-text-primary)] mb-2">
-                      Deployment Flexibility
+                      Cloud or On-Site — Your Choice
                     </h3>
                     <p className="text-[var(--clay-text-tertiary)]">
-                      Cloud for convenience. Edge for privacy. Our Genevieve hardware
-                      brings AI to your premises when data cannot leave.
+                      Run your agent in the cloud for convenience, or use Genevieve hardware
+                      to keep everything on your premises for maximum privacy.
                     </p>
                   </div>
                 </div>
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold text-[var(--clay-text-primary)] mb-2">
-                      Human-in-the-Loop
+                      You Stay in Control
                     </h3>
                     <p className="text-[var(--clay-text-tertiary)]">
-                      AI handles routine work while escalating complex decisions to human judgment.
-                      Augmentation, not replacement.
+                      Your agent handles the repetitive work and flags anything that needs
+                      a human decision. You approve, you decide, you stay in charge.
                     </p>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-[var(--clay-text-primary)] mb-2">
-                      Template-Based Deployment
+                      Live in Under 5 Minutes
                     </h3>
                     <p className="text-[var(--clay-text-tertiary)]">
-                      No AI expertise required. Select your industry, customize, deploy.
-                      From zero to production in minutes.
+                      No IT team needed. No technical knowledge required.
+                      Select your business type, answer a few simple questions, and your agent is live.
                     </p>
                   </div>
                 </div>
@@ -391,10 +379,10 @@ export default function ManifestoPage() {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-[var(--clay-text-primary)] mb-4">
-              Our Principles
+              What We Believe In
             </h2>
             <p className="text-[var(--clay-text-tertiary)] text-lg max-w-2xl mx-auto">
-              The foundation of everything we build
+              The principles that guide everything we build
             </p>
           </div>
 
@@ -437,14 +425,16 @@ export default function ManifestoPage() {
 
             <div className="relative z-10 max-w-3xl mx-auto">
               <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-[var(--clay-text-primary)]">
-                Democratizing the <span className="gradient-text">AI Revolution</span>
+                Turning Every Business into an <span className="gradient-text">Agentic Business</span>
               </h2>
               <p className="text-lg text-[var(--clay-text-tertiary)] leading-relaxed mb-6">
-                The greatest productivity gains of our lifetime should not be limited to software engineers.
-                Every lawyer, doctor, teacher, farmer, and restaurant owner deserves the same advantage.
+                The biggest productivity leap in a generation shouldn&apos;t only go to the biggest companies.
+                A family clinic should be able to run like a hospital with an AI team.
+                A small law firm should be able to compete like a big one.
               </p>
               <p className="text-lg text-[var(--clay-text-secondary)] leading-relaxed">
-                ClawBrick is the bridge between AI potential and the industries that power our world.
+                ClawBrick is how every business becomes an Agentic business — one powered by AI,
+                running 24/7, and growing without limits.
               </p>
             </div>
           </ClayCard>
@@ -459,11 +449,11 @@ export default function ManifestoPage() {
           className="text-center"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-[var(--clay-text-primary)]">
-            Join the <span className="gradient-text">Movement</span>
+            Make Your Business <span className="gradient-text">Agentic Today</span>
           </h2>
           <p className="text-[var(--clay-text-tertiary)] text-lg mb-8 max-w-2xl mx-auto">
-            The AI revolution does not have to concentrate benefits in the hands of the few.
-            It can elevate every industry, every profession, every worker.
+            Join the thousands of businesses going agentic. Set up your first AI agent today
+            and start saving time, serving customers better, and growing without limits.
           </p>
 
           {/* $100K Reward Announcement */}
@@ -504,7 +494,7 @@ export default function ManifestoPage() {
                 variant="primary"
                 className="flex items-center gap-2 text-white px-8 py-4"
               >
-                Start Building
+                Deploy My First Agent
                 <ArrowRight className="w-5 h-5" />
               </ClayButton>
             </Link>
@@ -513,20 +503,9 @@ export default function ManifestoPage() {
               className="text-[var(--clay-text-secondary)] px-8 py-4 font-semibold"
               onClick={() => { setShowForm(true); setSubmitted(false); setEmail(""); }}
             >
-              Register Interest
+              Get Early Access
             </ClayButton>
-            <a
-              href="https://docs.clawbrick.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ClayButton
-                variant="default"
-                className="text-[var(--clay-text-secondary)] px-8 py-4"
-              >
-                Read the Docs
-              </ClayButton>
-            </a>
+
           </div>
         </motion.div>
 

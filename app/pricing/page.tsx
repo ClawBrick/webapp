@@ -7,14 +7,14 @@ import { ClayCard, ClayButton } from "@/components/ui/ClayCard";
 
 export default function PricingPage() {
     const features = [
-        "Bring Your Own Key (BYOK) - Use your LLM provider keys",
-        "Configurable cloud computer",
-        "All tools: bash, browser, files",
-        "Multi-channel support (WhatsApp, Telegram, Slack, Discord, etc.)",
-        "Local-first Gateway control plane",
-        "Multi-agent routing",
-        "Companion apps (macOS, iOS, Android)",
-        "Support for OpenAI, Anthropic, Google, and more",
+        "Your own private AI agent, always on and always working",
+        "Handles tasks via WhatsApp, Telegram, Slack, and more",
+        "Browses the web, manages files, and runs automations",
+        "Use any leading AI model (ChatGPT, Claude, Gemini, and more)",
+        "Use your own AI provider keys to keep costs low",
+        "Works across all your devices (Mac, iPhone, Android)",
+        "Scales up as your team grows",
+        "Full control over your data and privacy",
     ];
 
     return (
@@ -30,22 +30,22 @@ export default function PricingPage() {
                     >
                         {/* Badge */}
                         <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--clay-surface)] shadow-[var(--shadow-clay-small)] text-[var(--clay-accent-primary)] text-sm font-semibold mb-6">
-                            <span>🔑</span>
+                            <span>🚀</span>
                             <span className="text-[var(--clay-text-secondary)]">
-                                BYOK Model — Use your own LLM provider keys
+                                One flat price. Everything included.
                             </span>
                         </div>
 
                         {/* Title */}
                         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[var(--clay-text-primary)]">
-                            Pricing that{" "}
-                            <span className="gradient-text-animated">scales with you</span>
+                            Simple pricing,{" "}
+                            <span className="gradient-text-animated">big results</span>
                         </h1>
 
                         {/* Subtitle */}
                         <p className="text-xl text-[var(--clay-text-tertiary)] max-w-2xl mx-auto">
-                            Deploy OpenClaw agents with your own LLM keys. Full control,
-                            transparent costs, no vendor lock-in.
+                            Get your own AI agent up and running for less than a daily coffee.
+                            No hidden fees. No technical headaches. Cancel any time.
                         </p>
                     </motion.div>
 
@@ -64,10 +64,10 @@ export default function PricingPage() {
                                 {/* Plan Name */}
                                 <div className="text-center mb-8">
                                     <h2 className="text-2xl font-bold text-[var(--clay-text-primary)] mb-2">
-                                        Starter
+                                        Business Agent Plan
                                     </h2>
                                     <p className="text-[var(--clay-text-tertiary)]">
-                                        Everything you need to build with AI. Bring your own keys.
+                                        Everything your business needs to go agentic and start saving time from day one.
                                     </p>
                                 </div>
 
@@ -124,11 +124,11 @@ export default function PricingPage() {
                         className="text-center mt-12 space-y-4 max-w-2xl mx-auto"
                     >
                         <p className="text-[var(--clay-text-tertiary)]">
-                            Use your own API keys from OpenAI, Anthropic, Google, or any LLM provider.
-                            You control costs and data.
+                            Use your own API keys from OpenAI, Anthropic, Google, or any major AI provider
+                            to keep your costs low and your data private.
                         </p>
                         <p className="text-[var(--clay-text-muted)] text-sm">
-                            Pay your LLM provider directly. No markups, no hidden fees.
+                            No markups, no surprises. You pay your AI provider directly, we just charge for the platform.
                         </p>
                     </motion.div>
                 </div>
