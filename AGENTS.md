@@ -58,7 +58,7 @@ All variables live in `.env`. Never commit `.env` — only `.env.example`.
 webapp/
 ├── app/                        # Next.js App Router
 │   ├── page.tsx                # Landing page (hero, features, manifesto CTA)
-│   ├── manifesto/page.tsx      # Manifesto + 100K builder reward + email register
+│   ├── manifesto/page.tsx      # Manifesto + Partner Program + email register
 │   ├── agents/
 │   │   ├── page.tsx            # Agent list dashboard
 │   │   └── deploy/page.tsx     # Deploy new agent form

@@ -154,7 +154,7 @@ We are looking for:
 - **Developers** building specialized capabilities for underserved sectors
 - **Investors** who see the opportunity in democratizing AI
 
-To accelerate this mission, we are offering a **$100K USD reward** for builders and projects that bring AI to industries traditionally overlooked.
+To accelerate this mission, we have launched a **Partner Program** for builders and projects that bring AI to industries traditionally overlooked.
 
 The future of work is not AI versus humans. It is AI empowering humans across every industry that powers our world.
 

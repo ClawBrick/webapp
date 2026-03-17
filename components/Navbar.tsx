@@ -194,7 +194,14 @@ export default function Navbar() {
           <div className="bg-[var(--clay-surface)] rounded-2xl px-6 py-4 flex items-center justify-between shadow-[var(--shadow-clay-floating)]">
             <Link href="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
-                <Image src="/logo.png" alt="ClawBrick" width={40} height={40} className="w-full h-full object-cover" priority />
+                <Image
+                  src="/logo.jpg"
+                  alt="ClawBrick"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
               <span className="font-bold text-xl tracking-tight text-[var(--clay-text-primary)]">
                 ClawBrick
@@ -216,15 +223,17 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-500 ${isScrolled ? "py-3" : "py-4"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4 transition-all duration-500 ${
+          isScrolled ? "py-3" : "py-4"
+        }`}
       >
         <div className="max-w-7xl mx-auto">
           <div
-            className={`relative rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-500 ${isScrolled
+            className={`relative rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-500 ${
+              isScrolled
                 ? "bg-[var(--clay-surface)] shadow-[var(--shadow-clay-floating)]"
                 : "bg-transparent"
-              }`}
+            }`}
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
@@ -233,7 +242,14 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 className="w-10 h-10 rounded-xl overflow-hidden shadow-lg"
               >
-                <Image src="/logo.png" alt="ClawBrick" width={40} height={40} className="w-full h-full object-cover" priority />
+                <Image
+                  src="/logo.jpg"
+                  alt="ClawBrick"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </motion.div>
               <span className="font-bold text-xl tracking-tight hidden sm:block text-[var(--clay-text-primary)]">
                 ClawBrick
@@ -246,10 +262,11 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl ${pathname === link.href
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl ${
+                    pathname === link.href
                       ? "text-[var(--clay-text-primary)]"
                       : "text-[var(--clay-text-tertiary)] hover:text-[var(--clay-text-primary)]"
-                    }`}
+                  }`}
                 >
                   {pathname === link.href && (
                     <motion.div
@@ -371,10 +388,11 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${pathname === link.href
+                  className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    pathname === link.href
                       ? "bg-[var(--clay-surface)] text-[var(--clay-text-primary)] shadow-[var(--shadow-clay-pressed)]"
                       : "text-[var(--clay-text-muted)] hover:text-[var(--clay-text-primary)] hover:bg-[var(--clay-surface-hover)]"
-                    }`}
+                  }`}
                 >
                   {link.label}
                 </Link>

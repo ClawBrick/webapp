@@ -11,7 +11,13 @@ export default function Footer() {
           {/* Logo - Left */}
           <Link href="/" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
-              <Image src="/logo.png" alt="ClawBrick" width={40} height={40} className="w-full h-full object-cover" />
+              <Image
+                src="/logo.jpg"
+                alt="ClawBrick"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
             </div>
             <span className="font-bold text-xl text-[var(--clay-text-primary)]">
               ClawBrick
@@ -52,7 +58,7 @@ export default function Footer() {
               Privacy
             </Link>
             <a
-              href="https://x.com/NetSepio"
+              href="https://x.com/ClawBrickHQ"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--clay-text-tertiary)] hover:text-[var(--clay-accent-primary)] transition-colors"
@@ -68,7 +74,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://github.com/NetSepio"
+              href="https://github.com/ClawBrick"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--clay-text-tertiary)] hover:text-[var(--clay-accent-primary)] transition-colors"

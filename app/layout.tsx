@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | ClawBrick",
   },
   description:
-    "Deploy your own AI agent in minutes. ClawBrick is the easiest way to run autonomous AI agents on dedicated cloud infrastructure — no technical skills required.",
+    "Deploy your own AI agent in minutes. ClawBrick is the easiest and most secure way to run autonomous AI agents on dedicated cloud infrastructure — no technical skills required.",
   keywords: [
     "AI agent",
     "autonomous agent",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.jpg",
         width: 400,
         height: 400,
         alt: "ClawBrick Logo",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
       "Deploy your own AI agent in minutes. Autonomous AI agents on dedicated cloud infrastructure.",
     creator: "@clawbrickhq",
     site: "@clawbrickhq",
-    images: ["/logo.png"],
+    images: ["/logo.jpg"],
   },
 };
 
@@ -105,4 +105,3 @@ export default function RootLayout({
     </html>
   );
 }
-
