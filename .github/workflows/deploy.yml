@@ -86,10 +86,13 @@ jobs:
               --env-file .env \
               --restart unless-stopped \
               --network traefik_web \
-              -p 9083:3000 \
               --label "traefik.enable=true" \
-              --label "traefik.http.routers.clawbrick-dev.rule=Host(\`clawbrick.com\`)" \
+              --label "traefik.http.routers.clawbrick-dev.rule=Host(`clawbrick.com`,`www.clawbrick.com`)" \
               --label "traefik.http.routers.clawbrick-dev.entrypoints=websecure" \
               --label "traefik.http.routers.clawbrick-dev.tls.certresolver=letsencrypt" \
+              --label "traefik.http.routers.clawbrick-dev.middlewares=redirect-www" \
+              --label "traefik.http.middlewares.redirect-www.redirectregex.regex=^https?://www\.(.*)" \
+              --label "traefik.http.middlewares.redirect-www.redirectregex.replacement=https://$1" \
+              --label "traefik.http.middlewares.redirect-www.redirectregex.permanent=true" \
               --label "traefik.http.services.clawbrick-dev.loadbalancer.server.port=3000" \
               ghcr.io/clawbrick/webapp:main
