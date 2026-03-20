@@ -95,12 +95,39 @@ case "$LLM_PROVIDER" in
     ;;
 esac
 
-# Create OpenClaw configuration
+# OpenClaw expects provider/model IDs (e.g. openai/gpt-5-mini). If llm_model is
+# already "provider/model", use as-is; otherwise prefix from llm_provider.
+case "$LLM_PROVIDER" in
+  anthropic)
+    MODEL_PROVIDER_PREFIX="anthropic"
+    ;;
+  openai)
+    MODEL_PROVIDER_PREFIX="openai"
+    ;;
+  openrouter)
+    MODEL_PROVIDER_PREFIX="openrouter"
+    ;;
+  *)
+    MODEL_PROVIDER_PREFIX="openai"
+    ;;
+esac
+if [[ "$LLM_MODEL" == */* ]]; then
+  PRIMARY_MODEL_REF="$LLM_MODEL"
+else
+  PRIMARY_MODEL_REF="${MODEL_PROVIDER_PREFIX}/${LLM_MODEL}"
+fi
+
+# Create OpenClaw configuration (current schema: agents.defaults, not legacy agent.*)
 echo ">>> Creating OpenClaw configuration..."
 cat > /home/openclaw/.openclaw/openclaw.json << EOF
 {
-  "agent": {
-    "model": "$LLM_MODEL"
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "$PRIMARY_MODEL_REF",
+        "fallbacks": []
+      }
+    }
   },
   "gateway": {
     "auth": {
@@ -130,6 +157,10 @@ fi
 chown -R openclaw:openclaw /home/openclaw/.openclaw
 chmod 600 /home/openclaw/.openclaw/.env
 chmod 600 /home/openclaw/.openclaw/openclaw.json
+
+# Migrate / validate config for current OpenClaw CLI (non-interactive where supported)
+echo ">>> Running openclaw doctor --fix..."
+su - openclaw -s /bin/bash -c "cd /home/openclaw && openclaw doctor --fix" </dev/null || true
 
 # Install and configure Caddy
 echo ">>> Installing Caddy..."
@@ -199,7 +230,7 @@ systemctl start openclaw
 systemctl restart caddy
 
 # Wait for services to start
-sleep 5
+sleep 15
 
 # Health check
 echo ">>> Running health check..."
